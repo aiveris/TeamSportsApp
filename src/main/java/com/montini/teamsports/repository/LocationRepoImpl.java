@@ -37,16 +37,16 @@ public class LocationRepoImpl {
     }
 
     // Find
-    public Location find(Long id) {
+    public Location find(Integer id) {
         log.info(String.format("FIND #%d in", id) + this.getClass().getCanonicalName());
         return entityManager.find(Location.class, id);
     }
 
-    public Location findById(long id) {
+    public Location findById(Integer id) {
         return this.find(id);
     }
 
-    public Location findAll(Long id) {
+    public Location findAll(Integer id) {
         return entityManager.find(Location.class, id);
     }
 

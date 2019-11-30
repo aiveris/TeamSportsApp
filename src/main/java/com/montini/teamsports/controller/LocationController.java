@@ -11,34 +11,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Optional;
+
 @Controller
 public class LocationController {
 
-    @Autowired
-    private LocationRepo locationRepo;
+    // @Autowired
+    // private LocationRepo locationRepo;
+    //
+    // @GetMapping("/locations")
+    // public String showPage(Model model, @RequestParam(defaultValue = "0") int page) {
+    //     model.addAttribute("data", locationRepo.findAll(PageRequest.of(page, 4)));
+    //     return "index";
+    // }
+    //
+    // @PostMapping("/save")
+    // public String save(Location location) {
+    //     locationRepo.save(location);
+    //     return "redirect:/";
+    // }
+    //
+    // @GetMapping("/delete")
+    // public String delete(Location location) {
+    //     locationRepo.delete(location);
+    //     return "redirect:/";
+    // }
 
-    @GetMapping("/")
-    public String showPage(Model model, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("data", locationRepo.findAll(PageRequest.of(page, 4)));
-        return "index";
-    }
-
-    @PostMapping("/save")
-    public String save(Location location) {
-        locationRepo.save(location);
-        return "redirect:/";
-    }
-
-    @GetMapping("/delete")
-    public String delete(Location location) {
-        locationRepo.delete(location);
-        return "redirect:/";
-    }
-
-    @GetMapping("/findOne")
-    @ResponseBody
-    public Location findOne(Integer id) {
-        return locationRepo.findOne(id);
-    }
+    // @GetMapping("/findOne")
+    // @ResponseBody
+    // public Location find(Integer id) {
+    //     return locationRepo.findById(id);
+    // }
 
 }
