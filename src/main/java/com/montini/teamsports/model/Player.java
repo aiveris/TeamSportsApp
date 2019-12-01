@@ -8,7 +8,7 @@ public class Player {
 
     private String username, password, email;
     private int rank;
-    private EnumType type;
+    private Type type;
     // private List<PlayEvent> myEventList;
 
     // Constructors
@@ -32,8 +32,8 @@ public class Player {
     public int getRank() { return rank; }
     public void setRank(int rank) { this.rank = rank; }
 
-    public EnumType getType() { return type; }
-    public void setType(EnumType type) { this.type = type; }
+    public Type getType() { return type; }
+    public void setType(Type type) { this.type = type; }
 
     // Methods
 

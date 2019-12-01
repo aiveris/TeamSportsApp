@@ -1,12 +1,7 @@
 package com.montini.teamsports.model;
 
-import javax.persistence.*;
-
-
 public class Location {
 
-    // @Id
-    // @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
