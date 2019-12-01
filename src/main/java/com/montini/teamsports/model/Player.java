@@ -21,7 +21,7 @@ public class Player implements Serializable {
         ADMIN,
         USER
     }
-    private List<PlayEvent> myEventList;
+    // private List<PlayEvent> myEventList;
 
     // Constructors
 

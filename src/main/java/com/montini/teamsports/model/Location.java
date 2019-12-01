@@ -1,9 +1,10 @@
 package com.montini.teamsports.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Entity
-public class Location {
+
+public class Location implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
