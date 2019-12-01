@@ -12,17 +12,15 @@ public class Location {
     private String name;
     private String address;
     private int maxCourts;
-    private String logo;
 
     // Constructors
 
     public Location() {}
 
-    public Location(String name, String address, int maxCourts, String logo) {
+    public Location(String name, String address, int maxCourts) {
         this.name = name;
         this.address = address;
         this.maxCourts = maxCourts;
-        this.logo = logo;
     }
 
     // Getters and Setters
@@ -40,8 +38,5 @@ public class Location {
 
     public int getMaxCourts() { return maxCourts; }
     public void setMaxCourts(int maxCourts) { this.maxCourts = maxCourts; }
-
-    public String getLogo() { return logo; }
-    public void setLogo(String logo) { this.logo = logo; }
 
 }
