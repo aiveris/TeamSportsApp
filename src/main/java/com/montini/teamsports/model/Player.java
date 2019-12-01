@@ -1,7 +1,8 @@
 package com.montini.teamsports.model;
 
-import org.hibernate.type.EnumType;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Player {
 
     private int id;
