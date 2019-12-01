@@ -1,26 +1,14 @@
 package com.montini.teamsports.model;
 
-import org.springframework.data.annotation.Id;
+import org.hibernate.type.EnumType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import java.io.Serializable;
-import java.util.List;
+public class Player {
 
-
-public class Player implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
     private String username, password, email;
     private int rank;
-    private enum type {
-        ADMIN,
-        USER
-    }
+    private EnumType type;
     // private List<PlayEvent> myEventList;
 
     // Constructors
@@ -29,44 +17,24 @@ public class Player implements Serializable {
 
     // Getters and Setters
 
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public Integer getId() {
-        return id;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getUsername() {
-        return username;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public int getRank() { return rank; }
+    public void setRank(int rank) { this.rank = rank; }
 
-    public String getPassword() {
-        return password;
-    }
+    public EnumType getType() { return type; }
+    public void setType(EnumType type) { this.type = type; }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    // Methods
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
 }
