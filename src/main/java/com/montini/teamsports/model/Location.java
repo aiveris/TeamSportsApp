@@ -1,8 +1,10 @@
 package com.montini.teamsports.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
-
+@Component
 public class Location {
 
     // @Id
