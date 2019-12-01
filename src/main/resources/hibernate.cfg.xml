@@ -15,8 +15,8 @@
     <!-- DB schema will be updated if needed -->
     <property name="hibernate.hbm2ddl.auto">update</property>
 
-    <mapping resource="dbmappings/Player.hbm.xml" />
-    <mapping resource="dbmappings/Location.hbm.xml" />
+    <mapping resource="dbmappings/player.hbm.xml" />
+    <mapping resource="dbmappings/location.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>

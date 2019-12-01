@@ -1,13 +1,12 @@
 package com.montini.teamsports.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 
-public class Location implements Serializable {
+public class Location {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @Id
+    // @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
