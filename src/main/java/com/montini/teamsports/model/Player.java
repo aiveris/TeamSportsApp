@@ -13,8 +13,7 @@ public class Player {
     private int rank;
     private enum type {
         ADMIN,
-        USER,
-        SPORTSCENTER
+        USER
     }
     private List<PlayEvent> myEventList;
 
