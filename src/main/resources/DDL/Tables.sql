@@ -15,3 +15,4 @@ CREATE TABLE LOCATION
     name varchar(255),
 	maxCourts int,
 );
+

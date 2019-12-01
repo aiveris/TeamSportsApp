@@ -12,7 +12,12 @@
       <property name="password" column="password" type="string"/>
       <property name="email" column="email" type="string"/>
       <property name="rank" column="userrank" type="int"/>
-      <property name="type" column="usertype" type="org.hibernate.type.EnumType"/>
+      <property name="type">
+         <type name="org.hibernate.type.EnumType">
+            <param name="enumClass">com.montini.teamsports.model.Type</param>
+            <param name="useNamed">true</param>
+         </type>
+      </property>
 
       <!--<set name="bees" inverse="true">-->
       <!--    <key column="honey_id"></key>-->
