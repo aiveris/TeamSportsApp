@@ -1,8 +1,5 @@
 package com.montini.teamsports.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Player {
 
     private int id;

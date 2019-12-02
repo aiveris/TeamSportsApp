@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name = "PlayEvent" table = "playevent">
+        <id name="id" column="id"> </id>
+        <property name = "location" column = "location" type = "string"/>
+        <property name = "date" column = "date" type = "int"/>
+        <property name = "name" column = "name" type = "string"/>
+        <property name = "title" column = "title" type = "string"/>
+        <property name="type">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.montini.teamsports.model.Type</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+        <property name = "organiser" column = "type" type = "string"/>
+        <property name = "users" column = "users" type = "string"/>
+        <property name = "freeSlots" column = "freeSlots" type = "int"/>
+
+    </class>
+</hibernate-mapping>
