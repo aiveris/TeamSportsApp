@@ -28,3 +28,10 @@ CREATE TABLE PLAYEVENT
     users CHAR (25),
     freeSlots INT,
 );
+
+CREATE TABLE REVIEW
+(
+    id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    timestamp DATETIME,
+    description TEXT
+);
