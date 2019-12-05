@@ -12,7 +12,7 @@
         <property name="rank" column="userrank" type="int"/>
         <property name="type">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">Type</param>
+                <param name="enumClass">com.montini.teamsports.model.Type</param>
                 <param name="useNamed">true</param>
             </type>
         </property>
