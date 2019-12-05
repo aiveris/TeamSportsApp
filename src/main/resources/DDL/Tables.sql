@@ -20,14 +20,14 @@ CREATE TABLE LOCATION
 CREATE TABLE PLAYEVENT
 (
 	id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Location CHAR (25),
-    date INT,
+    Location_id int (25),
+    eventDate date,
     title CHAR (25),
-    type INT,
+    gametype enum("SO", "SC", "DO", "DC"),
     review CHAR (25),
     organiser CHAR (25),
     users CHAR (25),
-    freeSlots INT,
+    freeSlots INT
 );
 
 CREATE TABLE REVIEW
