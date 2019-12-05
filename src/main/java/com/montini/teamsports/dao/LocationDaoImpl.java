@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class LocationDaoImpl implements  LocationDao{
+public class LocationDaoImpl implements LocationDao {
 
     @Autowired
     Location location;
@@ -34,6 +35,7 @@ public class LocationDaoImpl implements  LocationDao{
 
     /**
      * Update Location
+     *
      * @param location
      */
     public void updateLocation(Location location) {
@@ -55,6 +57,7 @@ public class LocationDaoImpl implements  LocationDao{
 
     /**
      * Delete Instructor
+     *
      * @param id
      */
     public void deleteLocation(int id) {
@@ -83,6 +86,7 @@ public class LocationDaoImpl implements  LocationDao{
 
     /**
      * Get Location By ID
+     *
      * @param id
      * @return
      */
@@ -108,6 +112,7 @@ public class LocationDaoImpl implements  LocationDao{
 
     /**
      * Get all Location
+     *
      * @return
      */
     @SuppressWarnings("unchecked")

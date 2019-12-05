@@ -1,9 +1,11 @@
 package com.montini.teamsports.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Player {
 
     private int id;
-
     private String username, password, email;
     private int rank;
     private Type type;
