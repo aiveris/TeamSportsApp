@@ -4,15 +4,20 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name = "PlayEvent" table = "playevent">
-        <id name="id" column="id"> </id>
-        <property name = "location" column = "location" type = "string"/>
-        <property name = "date" column = "date" type = "int"/>
-        <property name = "name" column = "name" type = "string"/>
+    <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
+        <meta attribute = "class-description">
+            This class contains the employee detail.
+        </meta>
+
+        <id name = "id" type = "int" column = "id">
+            <generator class="native"/>
+        </id>
+        <property name = "location_id" column = "location_id" type = "int"/>
+        <property name = "eventDate" column = "eventDate" type = "java.util.Date"/>
         <property name = "title" column = "title" type = "string"/>
-        <property name="type">
+        <property name="gameType">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.montini.teamsports.model.Type</param>
+                <param name="enumClass">com.montini.teamsports.model.GameType</param>
                 <param name="useNamed">true</param>
             </type>
         </property>

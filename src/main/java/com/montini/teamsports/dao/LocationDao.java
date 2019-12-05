@@ -9,7 +9,7 @@ import java.util.List;
 public interface LocationDao {
     public Location getLocation(int id);
     public List<Location> getAllLocation();
-    public void deleteInstructor(int id);
+    public void deleteLocation(int id);
     public void updateLocation(Location location);
     public void saveLocation(Location location);
 }

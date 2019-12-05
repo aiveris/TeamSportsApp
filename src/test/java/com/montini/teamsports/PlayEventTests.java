@@ -1,6 +1,7 @@
 package com.montini.teamsports;
 
 import com.montini.teamsports.model.Location;
+import com.montini.teamsports.model.PlayEvent;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LocationTests {
+public class PlayEventTests {
     private static final Logger log = LoggerFactory.getLogger( Location.class );
 
     private SessionFactory sf;
@@ -24,9 +25,9 @@ public class LocationTests {
             session = HibernateUtil.getSessionFactory().openSession();
             txn = session.beginTransaction();
 
-            Location location = new Location();
-            location.setName("Impulsas");
-            session.persist(location);
+            PlayEvent playEvent = new PlayEvent();
+
+            session.persist(playEvent);
 
             txn.commit();
         } catch (RuntimeException e) {
@@ -40,3 +41,4 @@ public class LocationTests {
     }
 
 }
+

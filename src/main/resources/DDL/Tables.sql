@@ -14,6 +14,7 @@ CREATE TABLE LOCATION
     address varchar(255),
     name varchar(255),
 	maxCourts int,
+	freeCourts int,
 );
 
 CREATE TABLE PLAYEVENT

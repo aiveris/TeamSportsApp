@@ -14,15 +14,17 @@ public class Location {
     private String name;
     private String address;
     private int maxCourts;
+    private int freeCourts;
 
     // Constructors
 
     public Location() {}
 
-    public Location(String name, String address, int maxCourts) {
+    public Location(String name, String address, int maxCourts, int freeCourts) {
         this.name = name;
         this.address = address;
         this.maxCourts = maxCourts;
+        this.freeCourts = freeCourts;
     }
 
     // Getters and Setters
@@ -41,4 +43,11 @@ public class Location {
     public int getMaxCourts() { return maxCourts; }
     public void setMaxCourts(int maxCourts) { this.maxCourts = maxCourts; }
 
+    public int getFreeCourts() {
+        return freeCourts;
+    }
+
+    public void setFreeCourts(int freeCourts) {
+        this.freeCourts = freeCourts;
+    }
 }

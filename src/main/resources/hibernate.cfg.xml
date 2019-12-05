@@ -7,8 +7,8 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="connection.url">jdbc:mysql://localhost:3306/teamsports?useSSL=false</property>
-    <property name="connection.username">teamsports</property>
-    <property name="connection.password">teamsports</property>
+    <property name="connection.username">yolo</property>
+    <property name="connection.password">asdfgh123</property>
     <property name="hibernate.connection.pool_size">10</property>
     <property name="show_sql">true</property>
 
@@ -17,6 +17,8 @@
 
     <mapping resource="dbmappings/player.hbm.xml" />
     <mapping resource="dbmappings/location.hbm.xml" />
+    <mapping resource="dbmappings/playevent.hbm.xml" />
+    <mapping resource="dbmappings/review.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>

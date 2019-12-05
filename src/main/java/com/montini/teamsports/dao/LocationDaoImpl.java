@@ -57,7 +57,7 @@ public class LocationDaoImpl implements  LocationDao{
      * Delete Instructor
      * @param id
      */
-    public void deleteInstructor(int id) {
+    public void deleteLocation(int id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
