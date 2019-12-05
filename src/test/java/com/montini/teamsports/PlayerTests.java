@@ -4,7 +4,7 @@ import com.montini.teamsports.model.Player;
 import com.montini.teamsports.model.Type;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class PlayerTests {
 
             txn.commit();
         } catch (RuntimeException e) {
-            if ( txn != null && txn.isActive() ) txn.rollback();
+            if (txn != null && txn.isActive()) txn.rollback();
             throw e;
         } finally {
             if (session != null) {
