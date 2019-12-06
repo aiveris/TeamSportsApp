@@ -4,10 +4,14 @@ import com.montini.teamsports.HibernateUtil;
 import com.montini.teamsports.model.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class PlayerDaoImpl implements PlayerDao {
+
+    @Autowired
+    Player player;
 
     @Override
     public void save(Player player) {

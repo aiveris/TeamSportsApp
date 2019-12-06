@@ -1,12 +1,14 @@
 package com.montini.teamsports.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Player {
 
     private int id;
-
     private String username, password, email;
     private int rank;
-    private Type type;
+    private byte userType; // 0 - regular user, 1 - admin
     // private List<PlayEvent> myEventList;
 
     // Constructors
@@ -30,8 +32,8 @@ public class Player {
     public int getRank() { return rank; }
     public void setRank(int rank) { this.rank = rank; }
 
-    public Type getType() { return type; }
-    public void setType(Type type) { this.type = type; }
+    public byte getUserType() { return userType; }
+    public void setUserType(byte userType) { this.userType = userType; }
 
     // Methods
 

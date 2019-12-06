@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
 <hibernate-mapping package="com.montini.teamsports.model">
     <class name="Player" table="player">
-        <id name="id" column="id">
+
+        <meta attribute="class-description">
+            This class contains the player detail.
+        </meta>
+
+        <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
+
         <property name="username" column="username" type="string"/>
         <property name="password" column="password" type="string"/>
         <property name="email" column="email" type="string"/>
-        <property name="rank" column="userrank" type="int"/>
-        <property name="type">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.montini.teamsports.model.Type</param>
-                <param name="useNamed">true</param>
-            </type>
-        </property>
+        <property name="rank" column="user_rank" type="int"/>
+        <property name="userType" column="user_type" type="byte"/>
+        <!--<property name="userType">-->
+        <!--    <type name="org.hibernate.type.EnumType">-->
+        <!--        <param name="enumClass">com.montini.teamsports.model.UserType</param>-->
+        <!--        <param name="useNamed">true</param>-->
+        <!--    </type>-->
+        <!--</property>-->
+
     </class>
 </hibernate-mapping>
