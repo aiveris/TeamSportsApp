@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 @Service
 public class PlayEventDaoImpl implements PlayEventDao {
@@ -15,7 +16,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
     PlayEvent playEvent;
 
 
-    public void savePlayEvent(PlayEvent playEvent) {
+    public PlayEvent savePlayEvent(PlayEvent playEvent) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -30,6 +31,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
             }
             e.printStackTrace();
         }
+        return playEvent;
     }
 
     /**
@@ -57,7 +59,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * Delete PlayEvent
      * @param id
      */
-    public void deletePlayEvent(int id) {
+    public void deletePlayEvent(PlayEvent id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -65,7 +67,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
             transaction = session.beginTransaction();
 
             // Delete a PlayEvent object
-            PlayEvent playEvent = session.get(PlayEvent.class, id);
+            PlayEvent playEvent = session.get(PlayEvent.class, (Serializable) id);
             if (playEvent != null) {
                 session.delete(playEvent);
                 System.out.println("playEvent is deleted");
@@ -86,7 +88,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * @param id
      * @return
      */
-    public PlayEvent getPlayEvent(int id) {
+    public PlayEvent getPlayEvent(Integer id) {
 
         Transaction transaction = null;
         PlayEvent playEvent = null;

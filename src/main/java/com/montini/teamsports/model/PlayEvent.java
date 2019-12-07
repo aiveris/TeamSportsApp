@@ -17,10 +17,11 @@ public class PlayEvent {
 
     public PlayEvent() {}
 
-    public PlayEvent(int location_id, Time eventDate, String title, String organiser, String users, int freeSlots) {
+    public PlayEvent(int location_id, Time eventDate, String title, GameType gameType, String organiser, String users, int freeSlots) {
         this.location_id = location_id;
         this.eventDate = eventDate;
         this.title = title;
+        this.gameType = gameType;
         this.organiser = organiser;
         this.users = users;
         this.freeSlots = freeSlots;

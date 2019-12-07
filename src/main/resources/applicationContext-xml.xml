@@ -10,6 +10,8 @@
     <bean name="locationDao"
           class="com.montini.teamsports.dao.LocationDaoImpl"/>
 
+    <bean name="playEventDao"
+          class="com.montini.teamsports.dao.PlayEventDaoImpl"/>
 
 
     </beans>
