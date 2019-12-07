@@ -1,10 +1,10 @@
-package com.montini.teamsports.dao;
+package com.montini.teamsports.service;
 
 import com.montini.teamsports.model.Location;
 
 import java.util.List;
 
-public interface LocationDao {
+public interface LocationService {
     public Location getLocation(long id);
     public List<Location> getAllLocation();
     public void deleteLocation(Location id);

@@ -107,7 +107,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
     }
 
     /**
-     * Get all Location
+     * Get all Location.xml
      * @return
      */
     @SuppressWarnings("unchecked")

@@ -7,4 +7,11 @@
     <bean name="playerDao"
           class="com.montini.teamsports.dao.PlayerDaoImpl" />
 
+    <bean name="locationDao"
+          class="com.montini.teamsports.dao.LocationDaoImpl"/>
+
+
+
     </beans>
+
+

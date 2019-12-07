@@ -15,10 +15,10 @@
     <!-- DB schema will be updated if needed -->
     <property name="hibernate.hbm2ddl.auto">update</property>
 
-    <mapping resource="dbmappings/player.hbm.xml" />
-    <mapping resource="dbmappings/location.hbm.xml" />
-    <mapping resource="dbmappings/playevent.hbm.xml" />
-    <mapping resource="dbmappings/review.hbm.xml" />
+    <mapping resource="hibernate/player.hbm.xml" />
+    <mapping resource="hibernate/location.hbm.xml" />
+    <mapping resource="hibernate/playevent.hbm.xml" />
+    <mapping resource="hibernate/review.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>
