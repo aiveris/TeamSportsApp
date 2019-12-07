@@ -4,8 +4,8 @@ CREATE TABLE player
     username varchar(30),
     password varchar(30),
     email    varchar(50),
-    userrank int,
-    usertype enum ("ADMIN", "USER")
+    user_rank int,
+    user_type int
 );
 
 CREATE TABLE location

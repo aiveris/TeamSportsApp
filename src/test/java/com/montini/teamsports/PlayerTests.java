@@ -23,7 +23,7 @@ public class PlayerTests {
             player.setUsername("montini");
             player.setPassword("energy");
             player.setEmail("lemontini@gmail.com");
-            player.setType(Type.ADMIN);
+            player.setUserType(0);
             player.setRank(1);
             session.persist(player);
 

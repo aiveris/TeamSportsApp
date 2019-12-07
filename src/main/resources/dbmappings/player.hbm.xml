@@ -18,7 +18,7 @@
         <property name="password" column="password" type="string"/>
         <property name="email" column="email" type="string"/>
         <property name="rank" column="user_rank" type="int"/>
-        <property name="userType" column="user_type" type="byte"/>
+        <property name="userType" column="user_type" type="int"/>
         <!--<property name="userType">-->
         <!--    <type name="org.hibernate.type.EnumType">-->
         <!--        <param name="enumClass">com.montini.teamsports.model.UserType</param>-->

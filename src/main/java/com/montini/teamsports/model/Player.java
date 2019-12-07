@@ -8,7 +8,7 @@ public class Player {
     private int id;
     private String username, password, email;
     private int rank;
-    private byte userType; // 0 - regular user, 1 - admin
+    private int userType; // 0 - regular user, 1 - admin
     // private List<PlayEvent> myEventList;
 
     // Constructors
@@ -32,8 +32,8 @@ public class Player {
     public int getRank() { return rank; }
     public void setRank(int rank) { this.rank = rank; }
 
-    public byte getUserType() { return userType; }
-    public void setUserType(byte userType) { this.userType = userType; }
+    public int getUserType() { return userType; }
+    public void setUserType(int userType) { this.userType = userType; }
 
     // Methods
 
