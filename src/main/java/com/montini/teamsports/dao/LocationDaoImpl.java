@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component("locationDao")
 
-public class LocationDaoImpl implements LocationDao {
+public class LocationDaoImpl implements LocationDao, Serializable {
 
     @Autowired
     Location location;
@@ -96,15 +96,16 @@ public class LocationDaoImpl implements LocationDao {
     public Location getLocation(Integer id) {
 
         Transaction transaction = null;
-        Location location = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an instructor object
+
             location = session.get(Location.class, id);
+
             // commit transaction
             transaction.commit();
-        } catch (Exception e) {
+        } catch (ClassCastException e) {
 
             e.printStackTrace();
 

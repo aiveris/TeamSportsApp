@@ -11,18 +11,11 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
-@Transactional
 public class LocationServiceImpl implements LocationService {
 
 
     @Autowired
     private LocationDao locationDao;
-
-
-    @PostConstruct
-    public void initValues(){
-        this.locationDao = locationDao;
-    }
 
 
     @Override
