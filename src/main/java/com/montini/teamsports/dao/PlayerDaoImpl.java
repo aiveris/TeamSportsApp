@@ -5,21 +5,14 @@ import com.montini.teamsports.model.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class PlayerDaoImpl implements PlayerDao {
 
     @Autowired
     Player player;
 
-    /**
-     * Save Player
-     *
-     * @param player
-     */
     @Override
     public void save(Player player) {
         Transaction transaction = null;
@@ -38,11 +31,6 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-    /**
-     * Update Player
-     *
-     * @param player
-     */
     @Override
     public void update(Player player) {
         Transaction transaction = null;
@@ -61,11 +49,6 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-    /**
-     * Delete Player
-     *
-     * @param id
-     */
     @Override
     public void delete(int id) {
         Transaction transaction = null;
@@ -90,12 +73,6 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-    /**
-     * Get Player by ID
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Player get(int id) {
         Transaction transaction = null;
@@ -116,13 +93,7 @@ public class PlayerDaoImpl implements PlayerDao {
         return player;
     }
 
-
-    /**
-     * Get all Player
-     *
-     * @return
-     */
-    @SuppressWarnings("unchecked")
+    @Override
     public List<Player> getAll() {
         Transaction transaction = null;
         List<Player> players = null;
