@@ -11,15 +11,22 @@ import java.util.Collection;
 @Service
 public class PlayerServiceImpl implements PlayerService {
 
+    @Autowired
     PlayerDao playerDao;
 
     public PlayerServiceImpl() {
-        this.playerDao = new PlayerDaoImpl();
     }
+
+    // public PlayerServiceImpl() { this.playerDao = new PlayerDaoImpl(); }
 
     @Override
     public void create(Player player) {
         playerDao.save(player);
+    }
+
+    public Player get(int id) {
+        System.out.println(playerDao.get(id));
+        return playerDao.get(id);
     }
 
     @Override
@@ -35,7 +42,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public Collection<Player> getPlayers() {
+    public Collection<Player> getAll() {
         return playerDao.getAll();
     }
 }
