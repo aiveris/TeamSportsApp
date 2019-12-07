@@ -93,7 +93,7 @@ public class LocationDaoImpl implements LocationDao {
      * @param id
      * @return
      */
-    public Location getLocation(long id) {
+    public Location getLocation(Integer id) {
 
         Transaction transaction = null;
         Location location = null;
@@ -105,8 +105,11 @@ public class LocationDaoImpl implements LocationDao {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
+
+            e.printStackTrace();
+
             if (transaction != null) {
-                transaction.rollback();
+            //    transaction.rollback();
             }
             e.printStackTrace();
         }
