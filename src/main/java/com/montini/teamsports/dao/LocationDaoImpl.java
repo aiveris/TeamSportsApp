@@ -5,18 +5,20 @@ import com.montini.teamsports.model.Location;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.List;
 
-@Service
+@Component("locationDao")
+
 public class LocationDaoImpl implements LocationDao {
 
     @Autowired
     Location location;
 
 
-    public void saveLocation(Location location) {
+    public Location saveLocation(Location location) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -31,6 +33,7 @@ public class LocationDaoImpl implements LocationDao {
             }
             e.printStackTrace();
         }
+        return location;
     }
 
     /**
@@ -60,7 +63,7 @@ public class LocationDaoImpl implements LocationDao {
      *
      * @param id
      */
-    public void deleteLocation(int id) {
+    public void deleteLocation(Location id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -68,7 +71,7 @@ public class LocationDaoImpl implements LocationDao {
             transaction = session.beginTransaction();
 
             // Delete a location object
-            Location location = session.get(Location.class, id);
+            Location location = session.get(Location.class, (Serializable) id);
             if (location != null) {
                 session.delete(location);
                 System.out.println("instructor is deleted");
@@ -90,7 +93,7 @@ public class LocationDaoImpl implements LocationDao {
      * @param id
      * @return
      */
-    public Location getLocation(int id) {
+    public Location getLocation(Integer id) {
 
         Transaction transaction = null;
         Location location = null;
@@ -102,8 +105,11 @@ public class LocationDaoImpl implements LocationDao {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
+
+            e.printStackTrace();
+
             if (transaction != null) {
-                transaction.rollback();
+            //    transaction.rollback();
             }
             e.printStackTrace();
         }
