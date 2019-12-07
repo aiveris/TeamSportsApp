@@ -8,10 +8,12 @@ public interface PlayerService {
 
     void create(Player player);
 
+    Player get(int id);
+
     void update(int id, Player player);
 
     void delete(int id);
 
-    Collection<Player> getPlayers();
+    Collection<Player> getAll();
 
 }

@@ -5,9 +5,11 @@ import com.montini.teamsports.model.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component("playerDao")
 public class PlayerDaoImpl implements PlayerDao {
 
     @Autowired
