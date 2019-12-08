@@ -14,16 +14,8 @@ import java.util.List;
 @Transactional
 public class LocationServiceImpl implements LocationService {
 
-
     @Autowired
     private LocationDao locationDao;
-
-
-    @PostConstruct
-    public void initValues(){
-        this.locationDao = locationDao;
-    }
-
 
     @Override
     public Location getLocation(Integer id) {

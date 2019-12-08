@@ -1,23 +1,31 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.HibernateUtil;
+
 import com.montini.teamsports.model.Location;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.swing.plaf.IconUIResource;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
-@Component("locationDao")
-
+@Repository
 public class LocationDaoImpl implements LocationDao {
 
-    @Autowired
-    Location location;
+    private static Logger logger = LoggerFactory.getLogger( LocationDaoImpl.class );
 
-
+    @Transactional
     public Location saveLocation(Location location) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -41,6 +49,8 @@ public class LocationDaoImpl implements LocationDao {
      *
      * @param location
      */
+
+    @Transactional
     public void updateLocation(Location location) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -63,6 +73,7 @@ public class LocationDaoImpl implements LocationDao {
      *
      * @param id
      */
+    @Transactional
     public void deleteLocation(Location id) {
 
         Transaction transaction = null;
@@ -93,28 +104,48 @@ public class LocationDaoImpl implements LocationDao {
      * @param id
      * @return
      */
+    @Transactional
     public Location getLocation(Integer id) {
 
         Transaction transaction = null;
-        Location location = null;
+        Location location = new Location();
+        Optional<Location> optionalLocation = Optional.of( location );
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
             // get an instructor object
-            location = session.get(Location.class, id);
+
+            TypedQuery<Location> query = session.createQuery("from Location L where L.id = :location_id",
+                    Location.class);
+
+            query.setParameter("location_id", id);
+            List<Location> results = query.getResultList();
+
+            Iterator<Location> ii = results.iterator();
+            while (ii.hasNext()) {
+                optionalLocation = Optional.of( ii.next() );
+                break;
+            }
+
             // commit transaction
             transaction.commit();
-        } catch (Exception e) {
+
+        } catch ( ClassCastException e ) {
 
             e.printStackTrace();
+            logger.error( e.getMessage() );
 
+        } catch (Exception e) {
             if (transaction != null) {
-            //    transaction.rollback();
+                transaction.rollback();
             }
             e.printStackTrace();
         }
-        return location;
+
+        return optionalLocation.get();
     }
+
 
     /**
      * Get all Location
@@ -122,6 +153,8 @@ public class LocationDaoImpl implements LocationDao {
      * @return
      */
     @SuppressWarnings("unchecked")
+
+    @Transactional
     public List<Location> getAllLocation() {
 
         Transaction transaction = null;

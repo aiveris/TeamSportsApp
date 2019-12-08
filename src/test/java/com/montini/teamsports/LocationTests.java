@@ -7,14 +7,17 @@ import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LocationTests {
     private static final Logger log = LoggerFactory.getLogger( Location.class );
 
+    @Autowired
     private SessionFactory sf;
 
-
-
+    Location location;
 
     @Test
     public void test() {
@@ -24,7 +27,8 @@ public class LocationTests {
             session = HibernateUtil.getSessionFactory().openSession();
             txn = session.beginTransaction();
 
-            Location location = new Location();
+            location = new Location();
+
             location.setName("Impulsas");
             session.persist(location);
 
