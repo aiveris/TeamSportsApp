@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 public class PlayEventTests {
     private static final Logger log = LoggerFactory.getLogger( Location.class );
 
@@ -26,6 +29,7 @@ public class PlayEventTests {
             txn = session.beginTransaction();
 
             PlayEvent playEvent = new PlayEvent();
+            playEvent.setEventDate(new Date(Calendar.getInstance().getTime().getTime()));
 
             session.persist(playEvent);
 

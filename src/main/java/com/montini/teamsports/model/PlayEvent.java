@@ -1,14 +1,11 @@
 package com.montini.teamsports.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.xml.crypto.Data;
 import java.io.Serializable;
 import java.sql.Date;
-import java.sql.Time;
 @Entity
 @Table(name = "playevent")
 public class PlayEvent implements Serializable {
@@ -26,10 +23,7 @@ public class PlayEvent implements Serializable {
     private GameType gameType;
     private String organiser;
     private Integer freeSlots;
-    @ManyToOne
-    private Review review;
-    @ManyToOne
-    private Player player;
+
     @ManyToOne
     private Location location;
 
@@ -37,14 +31,12 @@ public class PlayEvent implements Serializable {
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, Review review, String organiser, Player player, Integer freeSlots) {
+    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, String organiser, Integer freeSlots) {
         this.location = location;
         this.eventDate = eventDate;
         this.title = title;
         this.gameType = gameType;
-        this.review = review;
         this.organiser = organiser;
-        this.player = player;
         this.freeSlots = freeSlots;
     }
     // Getters and Setters
@@ -78,15 +70,11 @@ public class PlayEvent implements Serializable {
     public void setGameType(GameType gameType) {
         this.gameType = gameType;
     }
-    @JsonGetter("review")
-    public Review getReview_id() { return review; }
-    public void setReview_id(Review review) { this.review = review; }
+
     @JsonGetter("organiser")
     public String getOrganiser() { return organiser; }
     public void setOrganiser(String organiser) { this.organiser = organiser; }
-    @JsonGetter("users")
-    public Player getPlayer() { return player; }
-    public void setPlayer(String Player) { this.player = player; }
+
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }

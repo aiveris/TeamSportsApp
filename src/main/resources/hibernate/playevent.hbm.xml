@@ -13,7 +13,7 @@
             <generator class="native"/>
         </id>
 
-        <property name = "eventDate" column = "eventDate" type = "java.util.Date"/>
+        <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
         <property name = "title" column = "title" type = "string"/>
         <property name="gameType">
             <type name="org.hibernate.type.EnumType">

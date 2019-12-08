@@ -36,6 +36,8 @@
             <list>
                 <value>com.montini.teamsports.model.Location</value>
                 <value>com.montini.teamsports.model.PlayEvent</value>
+                <value>com.montini.teamsports.model.Player</value>
+                <value>com.montini.teamsports.model.Review</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -51,7 +53,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/teamsports" />
-        <property name="username" value="root" />
+        <property name="username" value="yolo" />
     </bean>
 
     <bean name="playerDao"
@@ -62,6 +64,9 @@
 
     <bean name="playEventDao"
           class="com.montini.teamsports.dao.PlayEventDaoImpl"/>
+
+    <bean name="reviewDao"
+          class="com.montini.teamsports.dao.ReviewDaoImpl"/>
 
     </beans>
 
