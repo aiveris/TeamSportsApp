@@ -1,9 +1,9 @@
 CREATE TABLE player
 (
-    id       int primary key not null auto_increment,
-    username varchar(30),
-    password varchar(30),
-    email    varchar(50),
+    id        int primary key not null auto_increment,
+    username  varchar(30),
+    password  varchar(30),
+    email     varchar(50),
     user_rank int,
     user_type int
 );
