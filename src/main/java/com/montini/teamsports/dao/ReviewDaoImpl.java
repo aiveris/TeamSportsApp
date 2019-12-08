@@ -4,14 +4,24 @@ import com.montini.teamsports.HibernateUtil;
 import com.montini.teamsports.model.Review;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
-@Service
+@Component("reviewDao")
 public class ReviewDaoImpl implements ReviewDao {
 
-    @Override
+    private Review review;
+
+    @Autowired
+    public ReviewDaoImpl(Review review) {
+        this.review = review;
+    }
+
+    @Transactional
     public Review getReview(int id) {
 
         Transaction transaction = null;
@@ -33,7 +43,7 @@ public class ReviewDaoImpl implements ReviewDao {
         return review;
     }
 
-    @Override
+    @Transactional
     public List<Review> getAllReviews() {
 
         Transaction transaction = null;
@@ -55,7 +65,7 @@ public class ReviewDaoImpl implements ReviewDao {
         return reviews;
     }
 
-    @Override
+    @Transactional
     public void updateReview(Review review) {
 
         Transaction transaction = null;
@@ -75,7 +85,7 @@ public class ReviewDaoImpl implements ReviewDao {
         }
     }
 
-    @Override
+    @Transactional
     public void saveReview(Review review) {
 
         Transaction transaction = null;
@@ -95,7 +105,7 @@ public class ReviewDaoImpl implements ReviewDao {
         }
     }
 
-    @Override
+    @Transactional
     public void deleteReview(int id) {
 
         Transaction transaction = null;
