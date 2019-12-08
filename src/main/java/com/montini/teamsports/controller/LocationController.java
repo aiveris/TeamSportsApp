@@ -1,14 +1,10 @@
 package com.montini.teamsports.controller;
 
 
-import com.montini.teamsports.dao.LocationDao;
-import com.montini.teamsports.dao.LocationDaoImpl;
 import com.montini.teamsports.model.Location;
 import com.montini.teamsports.service.LocationService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,7 +51,7 @@ public class LocationController {
         Optional<Location> locationOptional = Optional.ofNullable(locationService.getLocation(id));
         Location existLocation = locationOptional.orElse(null);
         if (existLocation != null) {
-            locationService.deleteLocation(existLocation);
+            locationService.deleteLocation(id);
         }
         return existLocation;
     }
