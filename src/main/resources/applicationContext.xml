@@ -35,6 +35,7 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.montini.teamsports.model.Location</value>
+                <value>com.montini.teamsports.model.PlayEvent</value>
             </list>
         </property>
         <property name="hibernateProperties">
