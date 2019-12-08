@@ -15,35 +15,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/{application.api.vr}/")
+@RequestMapping("api/")
 public class LocationController {
 
     @Autowired
-    private LocationService locationService;
+    private LocationDao locationDao;
 
     @RequestMapping(value = "locations", method = RequestMethod.GET)
     public List<Location> list() {
-        return locationService.getAllLocation();
+        return locationDao.getAllLocation();
     }
 
     @RequestMapping(value = "locations", method = RequestMethod.POST)
     public Location create(@RequestBody Location location) {
-        return locationService.saveLocation(location);
+        return locationDao.saveLocation(location);
     }
 
     @RequestMapping(value = "locations/{id}", method = RequestMethod.GET)
     public Location get(@PathVariable Integer id) {
-        Optional<Location> locationOptional = Optional.ofNullable(locationService.getLocation(id));
-        return locationOptional.orElse(null);
+
+        Location locationOptional = locationDao.getLocation(id);
+        return locationOptional;
     }
 
     @RequestMapping(value = "locations/{id}", method = RequestMethod.PUT)
     public Location update(@PathVariable int id, @RequestBody Location location) {
-        Optional<Location> locationOptional = Optional.ofNullable(locationService.getLocation(id));
+        Optional<Location> locationOptional = Optional.ofNullable(locationDao.getLocation(id));
         Location existLocation = locationOptional.orElse(null);
         if (existLocation != null) {
             BeanUtils.copyProperties(location, existLocation);
-            return locationService.saveLocation(existLocation);
+            return locationDao.saveLocation(existLocation);
         } else {
             return null;
         }
@@ -51,10 +52,10 @@ public class LocationController {
 
     @RequestMapping(value = "locations/{id}", method = RequestMethod.DELETE)
     public Location delete(@PathVariable int id) {
-        Optional<Location> locationOptional = Optional.ofNullable(locationService.getLocation(id));
+        Optional<Location> locationOptional = Optional.ofNullable(locationDao.getLocation(id));
         Location existLocation = locationOptional.orElse(null);
         if (existLocation != null) {
-            locationService.deleteLocation(existLocation);
+            locationDao.deleteLocation(existLocation);
         }
         return existLocation;
     }

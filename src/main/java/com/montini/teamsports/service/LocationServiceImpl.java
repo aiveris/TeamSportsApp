@@ -11,12 +11,11 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
+@Transactional
 public class LocationServiceImpl implements LocationService {
-
 
     @Autowired
     private LocationDao locationDao;
-
 
     @Override
     public Location getLocation(Integer id) {
