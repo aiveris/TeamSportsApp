@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 
 
 @Entity
-@Component
 @Table(name = "review")
 public class Review {
 
