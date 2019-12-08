@@ -5,10 +5,13 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "player")
-public class Player {
+public class Player implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +20,9 @@ public class Player {
 
     @NotNull
     private String username, password, email;
-
-    private int rank;
-    private int userType; // 0 - regular user, 1 - admin
+    @NotNull
+    private Integer rank;
+    private Integer userType; // 0 - regular user, 1 - admin
     // private List<PlayEvent> myEventList;
 
     // Constructors
@@ -44,13 +47,13 @@ public class Player {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    @JsonGetter("user_rank")
-    public int getRank() { return rank; }
-    public void setRank(int rank) { this.rank = rank; }
+    @JsonGetter("rank")
+    public Integer getRank() { return rank; }
+    public void setRank(Integer rank) { this.rank = rank; }
 
     @JsonGetter("user_type")
-    public int getUserType() { return userType; }
-    public void setUserType(int userType) { this.userType = userType; }
+    public Integer getUserType() { return userType; }
+    public void setUserType(Integer userType) { this.userType = userType; }
 
     // Methods
 

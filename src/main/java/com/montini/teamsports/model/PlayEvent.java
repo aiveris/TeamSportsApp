@@ -21,27 +21,30 @@ public class PlayEvent implements Serializable {
     private int id;
 
     @NotNull
-    private int location_id;
     private Date eventDate;
     private String title;
     private GameType gameType;
-    private int review_id;
     private String organiser;
-    private String users;
-    private int freeSlots;
+    private Integer freeSlots;
+    @ManyToOne
+    private Review review;
+    @ManyToOne
+    private Player player;
+    @ManyToOne
+    private Location location;
 
     // Constructors
 
     public PlayEvent() {}
 
-    public PlayEvent(int location_id, Date eventDate, String title, GameType gameType, int review_id, String organiser, String users, int freeSlots) {
-        this.location_id = location_id;
+    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, Review review, String organiser, Player player, Integer freeSlots) {
+        this.location = location;
         this.eventDate = eventDate;
         this.title = title;
         this.gameType = gameType;
-        this.review_id = review_id;
+        this.review = review;
         this.organiser = organiser;
-        this.users = users;
+        this.player = player;
         this.freeSlots = freeSlots;
     }
     // Getters and Setters
@@ -51,12 +54,12 @@ public class PlayEvent implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    @JsonGetter("location_id")
-    public int getLocation_id() {
-        return location_id;
+    @JsonGetter("location")
+    public Location getLocation() {
+        return location;
     }
-    public void setLocation_id(int location_id) {
-        this.location_id = location_id;
+    public void setLocation(Location location) {
+        this.location = location;
     }
     @JsonGetter("eventDate")
     public Date getEventDate() {
@@ -75,18 +78,18 @@ public class PlayEvent implements Serializable {
     public void setGameType(GameType gameType) {
         this.gameType = gameType;
     }
-    @JsonGetter("review_id")
-    public int getReview_id() { return review_id; }
-    public void setReview_id(int review_id) { this.review_id = review_id; }
+    @JsonGetter("review")
+    public Review getReview_id() { return review; }
+    public void setReview_id(Review review) { this.review = review; }
     @JsonGetter("organiser")
     public String getOrganiser() { return organiser; }
     public void setOrganiser(String organiser) { this.organiser = organiser; }
     @JsonGetter("users")
-    public String getUsers() { return users; }
-    public void setUsers(String users) { this.users = users; }
+    public Player getPlayer() { return player; }
+    public void setPlayer(String Player) { this.player = player; }
     @JsonGetter("freeSlots")
-    public int getFreeSlots() { return freeSlots; }
-    public void setFreeSlots(int freeSlots) { this.freeSlots = freeSlots; }
+    public Integer getFreeSlots() { return freeSlots; }
+    public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
 
 }
 
