@@ -33,8 +33,9 @@ public class LocationController {
 
     @RequestMapping(value = "locations/{id}", method = RequestMethod.GET)
     public Location get(@PathVariable Integer id) {
-        Optional<Location> locationOptional = Optional.ofNullable(locationDao.getLocation(id));
-        return locationOptional.orElse(null);
+
+        Location locationOptional = locationDao.getLocation(id);
+        return locationOptional;
     }
 
     @RequestMapping(value = "locations/{id}", method = RequestMethod.PUT)

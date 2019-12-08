@@ -1,13 +1,13 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping.dtd">
 
 <hibernate-mapping>
     <class name = "com.montini.teamsports.model.Location" table = "location">
 
         <meta attribute = "class-description">
-            This class contains the employee detail.
+            This class contains the location detail.
         </meta>
 
         <id name = "id" type = "int" column = "id">
