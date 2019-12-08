@@ -1,13 +1,26 @@
 package com.montini.teamsports.model;
 
+
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+
+@Entity
 @Component
+@Table(name = "review")
 public class Review {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
+
+    @Column(name = "timestamp")
     private Timestamp timestamp;
+
+    @Column(name = "description")
     private String description;
 
     // Constructors
