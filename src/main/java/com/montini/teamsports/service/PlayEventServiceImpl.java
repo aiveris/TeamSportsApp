@@ -14,12 +14,7 @@ import java.util.List;
 public class PlayEventServiceImpl implements PlayEventService {
 
     @Autowired
-    PlayEventDao playEventDao;
-
-    @PostConstruct
-    public void initValues(){
-        this.playEventDao = playEventDao;
-    }
+    private PlayEventDao playEventDao;
 
     @Override
     public PlayEvent getPlayEvent(Integer id) {

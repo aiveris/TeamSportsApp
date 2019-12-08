@@ -1,2 +1,2 @@
-INSERT INTO playevent VALUES (NULL, "Vilnius, Balcikonio g 9", "2019-12-01 19:00", "Badminton", "SINGLES", "text", "Jonas", "2", "2")
+INSERT INTO playevent VALUES (NULL, 1, "2019-12-01", "Badminton", "SO", 2, "Jonas", "Jonas, Petras", 2)
 

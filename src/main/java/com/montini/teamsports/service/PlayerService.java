@@ -7,13 +7,9 @@ import java.util.Collection;
 public interface PlayerService {
 
     void create(Player player);
-
-    Player get(int id);
-
     void update(int id, Player player);
-
     void delete(int id);
-
+    Player get(int id);
     Collection<Player> getAll();
 
 }
