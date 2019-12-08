@@ -1,9 +1,9 @@
 CREATE TABLE player
 (
-    id       int primary key not null auto_increment,
-    username varchar(30),
-    password varchar(30),
-    email    varchar(50),
+    id        int primary key not null auto_increment,
+    username  varchar(30),
+    password  varchar(30),
+    email     varchar(50),
     user_rank int,
     user_type int
 );
@@ -24,7 +24,7 @@ CREATE TABLE playevent
     eventDate   date,
     title       char(25),
     gametype    enum ("SO", "SC", "DO", "DC"),
-    review      char(25),
+    review_id   int (25),
     organiser   char(25),
     users       char(25),
     freeSlots   int

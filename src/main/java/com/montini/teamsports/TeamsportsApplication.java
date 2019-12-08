@@ -10,7 +10,6 @@ public class TeamsportsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TeamsportsApplication.class, args);
-
-
     }
+
 }

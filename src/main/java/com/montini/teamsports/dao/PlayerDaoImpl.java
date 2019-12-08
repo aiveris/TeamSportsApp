@@ -4,18 +4,19 @@ import com.montini.teamsports.HibernateUtil;
 import com.montini.teamsports.model.Player;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component("playerDao")
+@Repository
 public class PlayerDaoImpl implements PlayerDao {
 
-    @Autowired
-    Player player;
+    private static Logger logger = LoggerFactory.getLogger( PlayerDaoImpl.class );
 
-    @Override
+    @Transactional
     public void save(Player player) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -33,7 +34,7 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-    @Override
+    @Transactional
     public void update(Player player) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -51,7 +52,7 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-    @Override
+    @Transactional
     public void delete(int id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -75,7 +76,7 @@ public class PlayerDaoImpl implements PlayerDao {
         }
     }
 
-    @Override
+    @Transactional
     public Player get(int id) {
         Transaction transaction = null;
         Player player = null;
@@ -95,7 +96,7 @@ public class PlayerDaoImpl implements PlayerDao {
         return player;
     }
 
-    @Override
+    @Transactional
     public List<Player> getAll() {
         Transaction transaction = null;
         List<Player> players = null;
