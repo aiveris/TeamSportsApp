@@ -11,7 +11,6 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
-@Component("reviewService")
 public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
