@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
     <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
@@ -12,7 +12,7 @@
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
         </id>
-        <property name = "location_id" column = "location_id" type = "int"/>
+
         <property name = "eventDate" column = "eventDate" type = "java.util.Date"/>
         <property name = "title" column = "title" type = "string"/>
         <property name="gameType">
@@ -22,7 +22,6 @@
             </type>
         </property>
         <property name = "organiser" column = "type" type = "string"/>
-        <property name = "users" column = "users" type = "string"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
 
     </class>
