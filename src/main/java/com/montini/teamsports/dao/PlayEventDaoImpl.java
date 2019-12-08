@@ -4,18 +4,21 @@ import com.montini.teamsports.HibernateUtil;
 import com.montini.teamsports.model.PlayEvent;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
-@Service
+@Repository
 public class PlayEventDaoImpl implements PlayEventDao {
 
-    @Autowired
-    PlayEvent playEvent;
+    private static Logger logger = LoggerFactory.getLogger( PlayEventDaoImpl.class );
 
-
+    @Transactional
     public PlayEvent savePlayEvent(PlayEvent playEvent) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -38,6 +41,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * Update PlayEvent
      * @param playEvent
      */
+    @Transactional
     public void updatePlayEvent(PlayEvent playEvent) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -59,6 +63,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * Delete PlayEvent
      * @param id
      */
+    @Transactional
     public void deletePlayEvent(PlayEvent id) {
 
         Transaction transaction = null;
@@ -88,6 +93,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * @param id
      * @return
      */
+    @Transactional
     public PlayEvent getPlayEvent(Integer id) {
 
         Transaction transaction = null;
@@ -113,6 +119,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * @return
      */
     @SuppressWarnings("unchecked")
+    @Transactional
     public List<PlayEvent> getAllPlayEvent() {
 
         Transaction transaction = null;

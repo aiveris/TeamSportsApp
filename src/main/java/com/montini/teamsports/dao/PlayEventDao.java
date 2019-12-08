@@ -4,7 +4,7 @@ import com.montini.teamsports.model.PlayEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface PlayEventDao {
 
     public PlayEvent getPlayEvent(Integer playEvent);

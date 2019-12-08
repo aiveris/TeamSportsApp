@@ -24,7 +24,7 @@ CREATE TABLE playevent
     eventDate   date,
     title       char(25),
     gametype    enum ("SO", "SC", "DO", "DC"),
-    review      char(25),
+    review_id   int (25),
     organiser   char(25),
     users       char(25),
     freeSlots   int
