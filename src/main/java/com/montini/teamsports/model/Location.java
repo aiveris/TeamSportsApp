@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "location")
@@ -15,7 +15,7 @@ public class Location  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "location_id", unique = true, nullable = false)
     private Integer id;
 
     @NotNull
@@ -23,9 +23,10 @@ public class Location  implements Serializable {
     private String address;
     private int maxCourts;
     private int freeCourts;
+    @Transient
+    private Set<PlayEvent> playEventSet;
 
-    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="location")
-    public Collection<PlayEvent> playEvent;
+
 
     // Constructors
 
@@ -67,4 +68,12 @@ public class Location  implements Serializable {
         this.freeCourts = freeCourts;
     }
 
+
+    public Set<PlayEvent> getPlayEventSet() {
+        return playEventSet;
+    }
+
+    public void setPlayEventSet(Set<PlayEvent> playEventSet) {
+        this.playEventSet = playEventSet;
+    }
 }
