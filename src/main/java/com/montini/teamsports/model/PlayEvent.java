@@ -21,7 +21,7 @@ public class PlayEvent implements Serializable {
     private String title;
     private GameType gameType;
     private String organiser;
-    private int freeSlots;
+    private Integer freeSlots;
 
     @ManyToOne
     private Location location;
@@ -30,7 +30,7 @@ public class PlayEvent implements Serializable {
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, String organiser, int freeSlots) {
+    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, String organiser, Integer freeSlots) {
         this.location = location;
         this.eventDate = eventDate;
         this.title = title;
@@ -73,8 +73,8 @@ public class PlayEvent implements Serializable {
     public String getOrganiser() { return organiser; }
     public void setOrganiser(String organiser) { this.organiser = organiser; }
     @JsonGetter("freeSlots")
-    public int getFreeSlots() { return freeSlots; }
-    public void setFreeSlots(int freeSlots) { this.freeSlots = freeSlots; }
+    public Integer getFreeSlots() { return freeSlots; }
+    public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
 
 }
 
