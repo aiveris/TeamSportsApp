@@ -1,5 +1,4 @@
 package com.montini.teamsports.dao;
-
 import com.montini.teamsports.model.PlayEvent;
 import org.springframework.stereotype.Service;
 

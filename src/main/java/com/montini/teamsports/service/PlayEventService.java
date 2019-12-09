@@ -1,5 +1,4 @@
 package com.montini.teamsports.service;
-
 import com.montini.teamsports.model.PlayEvent;
 
 import java.util.List;
