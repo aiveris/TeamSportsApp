@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <beans xmlns="http://www.springframework.org/schema/beans"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
-           xmlns:context="http://www.springframework.org/schema/context"
-           xmlns:tx="http://www.springframework.org/schema/tx"
-           xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- to activate annotations in beans already registered in the application context -->
-    <context:annotation-config />
+    <context:annotation-config/>
 
     <!-- scans packages to find and register beans within the application context -->
-    <context:component-scan base-package="com.montini.teamsports" />
+    <context:component-scan base-package="com.montini.teamsports"/>
 
     <!-- turn on spring transaction annotation -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- Transaction Manager -->
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!-- Session Factory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <!-- <property name="mappingResources">
             <list>
                 <value>com/spring/series/orm/hbm/Player.hbm.xml</value>
@@ -36,6 +36,8 @@
             <list>
                 <value>com.montini.teamsports.model.Location</value>
                 <value>com.montini.teamsports.model.PlayEvent</value>
+                <value>com.montini.teamsports.model.Player</value>
+                <value>com.montini.teamsports.model.Review</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -49,13 +51,13 @@
 
     <!-- dataSource configuration -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/teamsports" />
-        <property name="username" value="root" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/teamsports"/>
+        <property name="username" value="root"/>
     </bean>
 
     <bean name="playerDao"
-          class="com.montini.teamsports.dao.PlayerDaoImpl" />
+          class="com.montini.teamsports.dao.PlayerDaoImpl"/>
 
     <bean name="locationDao"
           class="com.montini.teamsports.dao.LocationDaoImpl"/>
@@ -63,6 +65,9 @@
     <bean name="playEventDao"
           class="com.montini.teamsports.dao.PlayEventDaoImpl"/>
 
-    </beans>
+    <bean name="reviewDao"
+          class="com.montini.teamsports.dao.ReviewDaoImpl"/>
+
+</beans>
 
 

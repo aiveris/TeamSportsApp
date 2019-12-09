@@ -12,8 +12,8 @@
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
         </id>
-        <property name = "location_id" column = "location_id" type = "int"/>
-        <property name = "eventDate" column = "eventDate" type = "java.util.Date"/>
+
+        <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
         <property name = "title" column = "title" type = "string"/>
         <property name="gameType">
             <type name="org.hibernate.type.EnumType">
@@ -22,7 +22,6 @@
             </type>
         </property>
         <property name = "organiser" column = "type" type = "string"/>
-        <property name = "users" column = "users" type = "string"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
 
     </class>

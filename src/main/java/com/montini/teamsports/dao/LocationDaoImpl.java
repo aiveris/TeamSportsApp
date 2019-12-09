@@ -1,20 +1,15 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.HibernateUtil;
-
 import com.montini.teamsports.model.Location;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.swing.plaf.IconUIResource;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
@@ -42,6 +37,11 @@ public class LocationDaoImpl implements LocationDao {
             e.printStackTrace();
         }
         return location;
+    }
+
+    @Override
+    public void saveLocation(Location location, boolean testing) {
+        this.saveLocation(location);
     }
 
     /**
@@ -74,7 +74,7 @@ public class LocationDaoImpl implements LocationDao {
      * @param id
      */
     @Transactional
-    public void deleteLocation(Location id) {
+    public void deleteLocation(Integer id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
