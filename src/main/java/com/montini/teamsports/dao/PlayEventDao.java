@@ -1,17 +1,16 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.model.PlayEvent;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public interface PlayEventDao {
 
-    PlayEvent getPlayEvent(Integer id);
-    List<PlayEvent> getAllPlayEvent();
-    void deletePlayEvent(PlayEvent playEvent);
-    void updatePlayEvent(PlayEvent playEvent);
-    PlayEvent savePlayEvent(PlayEvent playEvent);
+    public PlayEvent getPlayEvent(Integer id);
+    public List<PlayEvent> getAllPlayEvent();
+    public void deletePlayEvent(PlayEvent id);
+    public void updatePlayEvent(Integer playEvent);
+    public PlayEvent savePlayEvent(PlayEvent playEvent);
 
 }
 

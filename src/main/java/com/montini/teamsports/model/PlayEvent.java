@@ -15,12 +15,11 @@ public class PlayEvent implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    private Integer id;
 
     @NotNull
     private Date eventDate;
     private String title;
-    private GameType gameType;
     private String organiser;
     private Integer freeSlots;
 
@@ -31,19 +30,18 @@ public class PlayEvent implements Serializable {
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, String organiser, Integer freeSlots) {
+    public PlayEvent(Location location, Date eventDate, String title, String organiser, Integer freeSlots) {
         this.location = location;
         this.eventDate = eventDate;
         this.title = title;
-        this.gameType = gameType;
         this.organiser = organiser;
         this.freeSlots = freeSlots;
     }
     // Getters and Setters
 
     @JsonGetter("id")
-    public int getId() { return id; }
-    public void setId(int id) {
+    public Integer getId() { return id; }
+    public void setId(Integer id) {
         this.id = id;
     }
     @JsonGetter("location")
@@ -63,18 +61,9 @@ public class PlayEvent implements Serializable {
     @JsonGetter("title")
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
-    @JsonGetter("gameType")
-    public GameType getGameType() {
-        return gameType;
-    }
-    public void setGameType(GameType gameType) {
-        this.gameType = gameType;
-    }
-
     @JsonGetter("organiser")
     public String getOrganiser() { return organiser; }
     public void setOrganiser(String organiser) { this.organiser = organiser; }
-
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }

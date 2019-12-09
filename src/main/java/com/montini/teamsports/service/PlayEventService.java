@@ -6,10 +6,10 @@ import java.util.Collection;
 
 public interface PlayEventService {
 
-    PlayEvent create(PlayEvent playEvent);
-    void update(PlayEvent playEvent);
-    void delete(int id);
-    PlayEvent get(int id);
+    PlayEvent create(PlayEvent id);
+    void update(Integer playEvent);
+    void delete(Integer id);
+    PlayEvent get(Integer id);
     Collection<PlayEvent> getAll();
 
 }

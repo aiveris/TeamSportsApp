@@ -15,12 +15,6 @@
 
         <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
         <property name = "title" column = "title" type = "string"/>
-        <property name="gameType">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.montini.teamsports.model.GameType</param>
-                <param name="useNamed">true</param>
-            </type>
-        </property>
         <property name = "organiser" column = "type" type = "string"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
 

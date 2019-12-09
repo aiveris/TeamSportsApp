@@ -1,6 +1,4 @@
 package com.montini.teamsports.controller;
-import com.montini.teamsports.dao.PlayEventDao;
-import com.montini.teamsports.model.PlayEvent;
 import com.montini.teamsports.model.PlayEvent;
 import com.montini.teamsports.service.PlayEventService;
 import org.springframework.beans.BeanUtils;
@@ -9,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.Optional;
 
 @RestController
@@ -30,13 +28,13 @@ public class PlayEventController {
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.GET)
-    public PlayEvent get(@PathVariable Integer id) {
+    public Serializable get(@PathVariable int id) {
         Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
         return playEventOptional.orElse(null);
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.PUT)
-    public PlayEvent update(@PathVariable int id, @RequestBody PlayEvent playEvent) {
+    public PlayEvent update(@PathVariable Integer id, @RequestBody PlayEvent playEvent) {
         Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
         PlayEvent existPlayEvent = playEventOptional.orElse(null);
         if (existPlayEvent != null) {
@@ -48,7 +46,7 @@ public class PlayEventController {
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.DELETE)
-    public PlayEvent delete(@PathVariable int id) {
+    public PlayEvent delete(@PathVariable Integer id) {
         Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
         PlayEvent existPlayEvent = playEventOptional.orElse(null);
         if (existPlayEvent != null) {

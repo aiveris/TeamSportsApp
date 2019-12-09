@@ -45,7 +45,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      */
 
     @Transactional
-    public void updatePlayEvent(PlayEvent playEvent) {
+    public void updatePlayEvent(Integer playEvent) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
