@@ -13,7 +13,7 @@ import java.sql.Date;
 import java.util.Calendar;
 
 public class PlayEventTests {
-    private static final Logger log = LoggerFactory.getLogger( Location.class );
+    private static final Logger log = LoggerFactory.getLogger( PlayEvent.class );
 
     private SessionFactory sf;
 
