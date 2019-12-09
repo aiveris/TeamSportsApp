@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
+
 @Entity
 @Table(name = "playevent")
 public class PlayEvent implements Serializable {
@@ -13,29 +14,26 @@ public class PlayEvent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "playevent_id", unique = true, nullable = false)
     private Integer id;
 
     @NotNull
     private Date eventDate;
     private String title;
     private GameType gameType;
-    private String organiser;
     private Integer freeSlots;
-
-    @ManyToOne
     private Location location;
+
 
     // Constructors
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, String organiser, Integer freeSlots) {
+    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, Integer freeSlots) {
         this.location = location;
         this.eventDate = eventDate;
         this.title = title;
         this.gameType = gameType;
-        this.organiser = organiser;
         this.freeSlots = freeSlots;
     }
     // Getters and Setters
@@ -69,9 +67,6 @@ public class PlayEvent implements Serializable {
     public void setGameType(GameType gameType) {
         this.gameType = gameType;
     }
-    @JsonGetter("organiser")
-    public String getOrganiser() { return organiser; }
-    public void setOrganiser(String organiser) { this.organiser = organiser; }
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }

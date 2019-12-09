@@ -1,8 +1,6 @@
 package com.montini.teamsports.model;
 
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -13,7 +11,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "review_id", insertable = false, updatable = false, unique = true, nullable = false)
     private int id;
 
     @Column(name = "timestamp")
@@ -21,6 +19,7 @@ public class Review {
 
     @Column(name = "description")
     private String description;
+
 
     // Constructors
     public Review() {
@@ -56,4 +55,5 @@ public class Review {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }
