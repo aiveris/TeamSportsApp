@@ -2,8 +2,11 @@ package com.montini.teamsports.controller;
 import com.montini.teamsports.dao.PlayEventDao;
 import com.montini.teamsports.model.PlayEvent;
 import com.montini.teamsports.model.PlayEvent;
+import com.montini.teamsports.service.PlayEventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,31 +17,31 @@ import java.util.Optional;
 public class PlayEventController {
 
     @Autowired
-    private PlayEventDao playEventDao;
+    private PlayEventService playEventService;
 
     @RequestMapping(value = "playEvents", method = RequestMethod.GET)
-    public List<PlayEvent> list() {
-        return playEventDao.getAllPlayEvent();
+    public ResponseEntity<Object> list() {
+        return new ResponseEntity<>(playEventService.getAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "playEvents", method = RequestMethod.POST)
     public PlayEvent create(@RequestBody PlayEvent playEvent) {
-        return playEventDao.savePlayEvent(playEvent);
+        return playEventService.create(playEvent);
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.GET)
     public PlayEvent get(@PathVariable Integer id) {
-        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventDao.getPlayEvent(id));
+        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
         return playEventOptional.orElse(null);
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.PUT)
     public PlayEvent update(@PathVariable int id, @RequestBody PlayEvent playEvent) {
-        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventDao.getPlayEvent(id));
+        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
         PlayEvent existPlayEvent = playEventOptional.orElse(null);
         if (existPlayEvent != null) {
             BeanUtils.copyProperties(playEvent, existPlayEvent);
-            return playEventDao.savePlayEvent(existPlayEvent);
+            return playEventService.create(existPlayEvent);
         } else {
             return null;
         }
@@ -46,10 +49,10 @@ public class PlayEventController {
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.DELETE)
     public PlayEvent delete(@PathVariable int id) {
-        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventDao.getPlayEvent(id));
+        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
         PlayEvent existPlayEvent = playEventOptional.orElse(null);
         if (existPlayEvent != null) {
-            playEventDao.deletePlayEvent(existPlayEvent);
+            playEventService.delete(existPlayEvent.getId());
         }
         return existPlayEvent;
     }

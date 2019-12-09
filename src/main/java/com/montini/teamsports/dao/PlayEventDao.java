@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface PlayEventDao {
 
-    public PlayEvent getPlayEvent(Integer id);
-    public List<PlayEvent> getAllPlayEvent();
-    public void deletePlayEvent(PlayEvent id);
-    public void updatePlayEvent(PlayEvent playEvent);
-    public PlayEvent savePlayEvent(PlayEvent playEvent);
+    PlayEvent getPlayEvent(Integer id);
+    List<PlayEvent> getAllPlayEvent();
+    void deletePlayEvent(PlayEvent playEvent);
+    void updatePlayEvent(PlayEvent playEvent);
+    PlayEvent savePlayEvent(PlayEvent playEvent);
 
 }
 

@@ -28,12 +28,13 @@
                                     </tr>
                                 </thead>
                                 <tbody id="eventsList">
-                                    <tr>
-                                        <td>Cell 1</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 3</td>
-                                        <td>Cell 4</td>
-                                        <td>Cell 4</td>
+                                    <tr th:each="event : ${playevents}">
+<!--                                        <td th:text="${event.getEventDate()}"></td>-->
+                                        <td>N/A</td>
+                                        <td>[TBA]</td>
+                                        <td th:text="${event.getGameType()}"></td>
+                                        <td>[TODO: Button with a modal list]</td>
+                                        <td>[TODO: Button with a modal list]</td>
                                     </tr>
                                 </tbody>
                             </table>

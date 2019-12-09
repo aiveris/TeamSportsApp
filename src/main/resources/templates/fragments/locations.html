@@ -27,10 +27,10 @@
                                 </tr>
                             </thead>
                             <tbody id="locationsList">
-                                <tr>
-                                    <td>Cell 1</td>
-                                    <td>Cell 2</td>
-                                    <td>Cell 3</td>
+                                <tr th:each="location : ${locations}">
+                                    <td th:text="${location.getName()}"></td>
+                                    <td th:text="${location.getAddress()}"></td>
+                                    <td th:text="${location.getMaxCourts()}"></td>
                                 </tr>
                             </tbody>
                         </table>

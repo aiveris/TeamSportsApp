@@ -2,12 +2,14 @@ package com.montini.teamsports.service;
 
 import com.montini.teamsports.model.PlayEvent;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface PlayEventService {
-    public PlayEvent getPlayEvent(Integer id);
-    public List<PlayEvent> getAllPlayEvent();
-    public void deletePlayEvent(PlayEvent id);
-    public void updatePlayEvent(PlayEvent playEvent);
-    public PlayEvent savePlayEvent(PlayEvent playEvent);
+
+    PlayEvent create(PlayEvent playEvent);
+    void update(PlayEvent playEvent);
+    void delete(int id);
+    PlayEvent get(int id);
+    Collection<PlayEvent> getAll();
+
 }

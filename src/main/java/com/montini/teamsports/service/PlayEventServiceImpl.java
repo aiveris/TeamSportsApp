@@ -17,30 +17,31 @@ public class PlayEventServiceImpl implements PlayEventService {
     private PlayEventDao playEventDao;
 
     @Override
-    public PlayEvent getPlayEvent(Integer id) {
-        return this.playEventDao.getPlayEvent(id);
+    public PlayEvent create(PlayEvent playEvent) {
+        this.playEventDao.savePlayEvent(playEvent);
+        return playEvent;
     }
 
     @Override
-    public List<PlayEvent> getAllPlayEvent() {
-        return this.playEventDao.getAllPlayEvent();
-    }
-
-    @Override
-    public void deletePlayEvent(PlayEvent id) {
-        this.playEventDao.deletePlayEvent(id);
-    }
-
-    @Override
-    public void updatePlayEvent(PlayEvent playEvent) {
+    public void update(PlayEvent playEvent) {
         this.playEventDao.updatePlayEvent(playEvent);
     }
 
     @Override
-    public PlayEvent savePlayEvent(PlayEvent playEvent) {
-        this.playEventDao.savePlayEvent(playEvent);
-        return playEvent;
+    public void delete(int id) {
+        this.playEventDao.deletePlayEvent(playEventDao.getPlayEvent(id));
     }
+
+    @Override
+    public PlayEvent get(int id) {
+        return this.playEventDao.getPlayEvent(id);
+    }
+
+    @Override
+    public List<PlayEvent> getAll() {
+        return this.playEventDao.getAllPlayEvent();
+    }
+
 }
 
 
