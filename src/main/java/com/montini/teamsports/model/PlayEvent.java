@@ -1,5 +1,4 @@
 package com.montini.teamsports.model;
-
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;

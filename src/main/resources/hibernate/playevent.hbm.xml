@@ -1,9 +1,9 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
+<hibernate-mapping package="com.montini.teamsports.model">
     <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
         <meta attribute = "class-description">
             This class contains the employee detail.
@@ -20,7 +20,7 @@
                 <param name="useNamed">true</param>
             </type>
         </property>
-        <property name = "organiser" column = "type" type = "string"/>
+        <property name = "organiser" column = "organiser" type = "string"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
 
     </class>
