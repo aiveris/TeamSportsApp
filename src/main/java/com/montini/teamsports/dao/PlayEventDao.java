@@ -9,7 +9,7 @@ public interface PlayEventDao {
 
     public PlayEvent getPlayEvent(Integer id);
     public List<PlayEvent> getAllPlayEvent();
-    public void deletePlayEvent(PlayEvent id);
+    public void deletePlayEvent(Integer id);
     public void updatePlayEvent(PlayEvent playEvent);
     public PlayEvent savePlayEvent(PlayEvent playEvent);
 

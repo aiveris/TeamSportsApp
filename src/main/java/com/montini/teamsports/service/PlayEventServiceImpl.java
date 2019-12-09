@@ -27,7 +27,7 @@ public class PlayEventServiceImpl implements PlayEventService {
     }
 
     @Override
-    public void deletePlayEvent(PlayEvent id) {
+    public void deletePlayEvent(Integer id) {
         this.playEventDao.deletePlayEvent(id);
     }
 

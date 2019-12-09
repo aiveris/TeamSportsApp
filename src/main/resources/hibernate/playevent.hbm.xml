@@ -12,7 +12,6 @@
         <id name = "id" type = "int" column = "id">
             <generator class="native"/>
         </id>
-
         <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
         <property name = "title" column = "title" type = "string"/>
         <property name="gameType">
