@@ -3,15 +3,18 @@ package com.montini.teamsports.frontend;
 import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.PlayEvent;
 import com.montini.teamsports.model.Player;
+import com.montini.teamsports.model.Review;
 import com.montini.teamsports.service.LocationService;
 import com.montini.teamsports.service.PlayEventService;
 import com.montini.teamsports.service.PlayerService;
+import com.montini.teamsports.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class FragmentsController {
@@ -24,6 +27,9 @@ public class FragmentsController {
 
     @Autowired
     private PlayEventService playEventService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @RequestMapping("/")
     public String rootDisplay() {
@@ -49,6 +55,13 @@ public class FragmentsController {
         Collection<Player> playerSet = playerService.getAll();
         model.addAttribute("players", playerSet);
         return "fragments/players";
+    }
+
+    @RequestMapping("/reviews")
+    public String reviewsDisplay(Model model){
+        List<Review> reviewsList= reviewService.getAll();
+        model.addAttribute("reviews", reviewsList);
+        return "fragments/reviews";
     }
 
 }
