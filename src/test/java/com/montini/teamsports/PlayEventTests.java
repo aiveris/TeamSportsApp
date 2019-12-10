@@ -1,5 +1,6 @@
 package com.montini.teamsports;
 
+import com.montini.teamsports.model.GameType;
 import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.PlayEvent;
 import org.hibernate.Session;
@@ -13,7 +14,7 @@ import java.sql.Date;
 import java.util.Calendar;
 
 public class PlayEventTests {
-    private static final Logger log = LoggerFactory.getLogger( Location.class );
+    private static final Logger log = LoggerFactory.getLogger( PlayEvent.class );
 
     private SessionFactory sf;
 
@@ -28,10 +29,24 @@ public class PlayEventTests {
             session = HibernateUtil.getSessionFactory().openSession();
             txn = session.beginTransaction();
 
+            Location l1 = new Location();
+            l1.setId(1);
+            l1.setName("Axel");
+            l1.setAddress("balcikonio 9");
+            l1.setMaxCourts(5);
+            l1.setFreeCourts(4);
+
             PlayEvent playEvent = new PlayEvent();
             playEvent.setEventDate(new Date(Calendar.getInstance().getTime().getTime()));
+            playEvent.setLocation(l1);
+            playEvent.setGameType(GameType.SINGLES_CLOSE);
+            playEvent.setTitle("kokoko");
+            playEvent.setFreeSlots(4);
 
-            session.persist(playEvent);
+
+
+            session.save(l1);
+            session.save(playEvent);
 
             txn.commit();
         } catch (RuntimeException e) {

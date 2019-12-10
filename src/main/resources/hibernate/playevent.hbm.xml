@@ -1,22 +1,29 @@
 <?xml version = "1.0" encoding = "utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping>
+<hibernate-mapping package="com.montini.teamsports.model">
     <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
         <meta attribute = "class-description">
             This class contains the employee detail.
         </meta>
 
-        <id name = "id" type = "int" column = "id">
+        <id name = "id" type = "int" column = "playevent_id">
             <generator class="native"/>
         </id>
-
-        <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
+        <property name = "eventDate" column = "event_Date" type = "java.sql.Date"/>
         <property name = "title" column = "title" type = "string"/>
-        <property name = "organiser" column = "type" type = "string"/>
-        <property name = "freeSlots" column = "freeSlots" type = "int"/>
+        <property name="gameType">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.montini.teamsports.model.GameType</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+        <property name = "freeSlots" column = "free_Slots" type = "int"/>
+        <many-to-one name="location" class="Location"
+                     column="location_id" not-null="true"/>
+
 
     </class>
 </hibernate-mapping>

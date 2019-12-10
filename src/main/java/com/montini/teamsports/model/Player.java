@@ -1,7 +1,6 @@
 package com.montini.teamsports.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,7 +14,7 @@ public class Player implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @Column(name = "player_id", unique = true, nullable = false)
     private int id;
 
     @NotNull
@@ -23,13 +22,21 @@ public class Player implements Serializable {
     @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
-    // private List<PlayEvent> myEventList;
+
 
     // Constructors
 
     public Player() {}
 
-// Getters and Setters
+    public Player(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull Integer rank, Integer userType) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.rank = rank;
+        this.userType = userType;
+    }
+
+    // Getters and Setters
 
     @JsonGetter("id")
     public int getId() { return id; }
@@ -54,6 +61,7 @@ public class Player implements Serializable {
     @JsonGetter("user_type")
     public Integer getUserType() { return userType; }
     public void setUserType(Integer userType) { this.userType = userType; }
+
 
     // Methods
 

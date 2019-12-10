@@ -1,7 +1,6 @@
 package com.montini.teamsports;
 
 import com.montini.teamsports.model.Player;
-import com.montini.teamsports.model.Type;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;

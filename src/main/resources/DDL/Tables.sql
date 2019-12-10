@@ -1,38 +1,41 @@
-CREATE TABLE player
-(
-    id        int primary key not null auto_increment,
-    username  varchar(30),
-    password  varchar(30),
-    email     varchar(50),
-    user_rank int,
-    user_type int
-);
 
 CREATE TABLE location
 (
-    id         int primary key not null auto_increment,
-    address    varchar(255),
-    name       varchar(255),
-    maxCourts  int,
-    freeCourts int
+    location_id   int primary key not null auto_increment,
+    address       varchar(255),
+    name          varchar(255),
+    max_Courts    int,
+    free_Courts   int,
+	unique (location_id)
 );
 
 CREATE TABLE playevent
 (
-    id          int primary key not null auto_increment,
-    Location_id int(25),
-    eventDate   date,
-    title       char(25),
-    gametype    enum ("SO", "SC", "DO", "DC"),
-    review_id   int (25),
-    organiser   char(25),
-    users       char(25),
-    freeSlots   int
+	location_id int NOT NULL,
+    playevent_id    int primary key not null auto_increment,
+    event_Date      date,
+    title           char(25),
+    free_Slots      int,
+     unique (playevent_id),
+     KEY FK_playevent_location (location_id),
+  CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id)
+);
+
+CREATE TABLE player
+(
+    player_id       int primary key not null auto_increment,
+    username        varchar(30),
+    password        varchar(30),
+    email           varchar(50),
+    user_rank       int,
+    user_type       int,
+    unique (player_id)
 );
 
 CREATE TABLE review
 (
-    id          int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    review_id   int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     timestamp   datetime,
-    description text
+    description text,
+	unique (review_id)
 );

@@ -1,5 +1,4 @@
 package com.montini.teamsports.dao;
-
 import com.montini.teamsports.HibernateUtil;
 import com.montini.teamsports.model.PlayEvent;
 import org.hibernate.Session;
@@ -67,7 +66,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * @param id
      */
     @Transactional
-    public void deletePlayEvent(PlayEvent id) {
+    public void deletePlayEvent(Integer id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
