@@ -44,6 +44,7 @@ public class PlayEvent implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     @JsonGetter("location")
     public Location getLocation() {
         return location;
@@ -51,6 +52,7 @@ public class PlayEvent implements Serializable {
     public void setLocation(Location location) {
         this.location = location;
     }
+
     @JsonGetter("eventDate")
     public Date getEventDate() {
         return eventDate;
@@ -58,12 +60,15 @@ public class PlayEvent implements Serializable {
     public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
+
     @JsonGetter("title")
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
+
     @JsonGetter("organiser")
     public String getOrganiser() { return organiser; }
     public void setOrganiser(String organiser) { this.organiser = organiser; }
+
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
