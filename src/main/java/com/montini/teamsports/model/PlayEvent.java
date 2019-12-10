@@ -1,4 +1,5 @@
 package com.montini.teamsports.model;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class PlayEvent implements Serializable {
     private String title;
     private GameType gameType;
     private Integer freeSlots;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Location location;
 
 

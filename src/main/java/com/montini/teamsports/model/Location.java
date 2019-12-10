@@ -1,6 +1,7 @@
 package com.montini.teamsports.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,7 +24,8 @@ public class Location  implements Serializable {
     private String address;
     private int maxCourts;
     private int freeCourts;
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<PlayEvent> playEventSet;
 
 

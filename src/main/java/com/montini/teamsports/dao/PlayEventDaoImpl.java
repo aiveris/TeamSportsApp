@@ -141,7 +141,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
      * Get all PlayEvent.xml
      * @return
      */
-    @SuppressWarnings("unchecked")
+
     @Transactional
     public List<PlayEvent> getAllPlayEvent() {
 
