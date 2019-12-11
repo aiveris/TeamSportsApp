@@ -29,7 +29,7 @@ public class ReviewTest {
             Player player = new Player();
             player.setUsername("Ignas");
             player.setPassword("kokokok");
-            player.setEmail("Ignas.Sungaila@gmail.com");
+            player.setEmail("jojo@jojo.com");
             player.setUserType(0);
             player.setRank(10);
 
@@ -39,8 +39,6 @@ public class ReviewTest {
             review.setTimestamp(new Timestamp(System.currentTimeMillis()));
             review.setDescription("New message from team-sport user.");
 
-
-
             session.save(player);
             session.save(review);
 
@@ -48,8 +46,8 @@ public class ReviewTest {
 
 
         } catch (RuntimeException e) {
-            if ( transaction != null && transaction.isActive() ) transaction.rollback();
-            throw e;
+
+            e.printStackTrace();
         } finally {
             if (session != null) {
                 session.close();

@@ -1,6 +1,8 @@
 package com.montini.teamsports.model;
 
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -11,7 +13,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "review_id", insertable = false, updatable = false, unique = true, nullable = false)
+    @Column(name = "review_id", unique = true, nullable = false)
     private int id;
 
     @Column(name = "timestamp")
@@ -32,6 +34,7 @@ public class Review {
     }
 
     // Getters and Setters
+    @JsonGetter("id")
     public int getId() {
         return id;
     }
@@ -40,6 +43,7 @@ public class Review {
         this.id = id;
     }
 
+    @JsonGetter("timestamp")
     public Timestamp getTimestamp() {
         return timestamp;
     }
@@ -48,6 +52,7 @@ public class Review {
         this.timestamp = timestamp;
     }
 
+    @JsonGetter("description")
     public String getDescription() {
         return description;
     }

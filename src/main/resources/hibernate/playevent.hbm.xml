@@ -5,25 +5,16 @@
 
 <hibernate-mapping package="com.montini.teamsports.model">
     <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
-        <meta attribute = "class-description">
-            This class contains the employee detail.
-        </meta>
-
-        <id name = "id" type = "int" column = "playevent_id">
-            <generator class="native"/>
-        </id>
-        <property name = "eventDate" column = "event_Date" type = "java.sql.Date"/>
+        <meta attribute = "class-description">This class contains the play events detail.</meta>
+        <id name = "id" type = "int" column = "playevent_id"><generator class="native"/></id>
+<!--        <many-to-one name="location" class="Location" column="location_id" not-null="true" cascade="all"/>-->
+        <property name = "location" column = "location_id" type = "int"/>
+        <property name = "eventDate" column = "eventDate" type = "string"/>
+        <property name = "eventTime" column = "eventTime" type = "string"/>
         <property name = "title" column = "title" type = "string"/>
-        <property name="gameType">
-            <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.montini.teamsports.model.GameType</param>
-                <param name="useNamed">true</param>
-            </type>
-        </property>
-        <property name = "freeSlots" column = "free_Slots" type = "int"/>
-        <many-to-one name="location" class="Location"
-                     column="location_id" not-null="true"/>
-
+        <property name = "gameType" column = "gameType" type = "int"/>
+        <property name = "freeSlots" column = "freeSlots" type = "int"/>
+        <property name = "player" column = "player_id" type = "int"/>
 
     </class>
 </hibernate-mapping>

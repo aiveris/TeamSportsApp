@@ -13,20 +13,18 @@ public class Player implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "player_id", unique = true, nullable = false)
-    private int id;
+    private Integer id;
 
     @NotNull
     private String username, password, email;
     @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
-
-
-    // Constructors
-
     public Player() {}
+
+
 
     public Player(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull Integer rank, Integer userType) {
         this.username = username;
@@ -37,10 +35,9 @@ public class Player implements Serializable {
     }
 
     // Getters and Setters
-
     @JsonGetter("id")
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
     @JsonGetter("username")
     public String getUsername() { return username; }
@@ -61,8 +58,5 @@ public class Player implements Serializable {
     @JsonGetter("user_type")
     public Integer getUserType() { return userType; }
     public void setUserType(Integer userType) { this.userType = userType; }
-
-
-    // Methods
 
 }

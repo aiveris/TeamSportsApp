@@ -1,4 +1,5 @@
 package com.montini.teamsports.model;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
@@ -13,28 +14,33 @@ public class PlayEvent implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "playevent_id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "playvent_id", unique = true, nullable = false)
     private Integer id;
 
     @NotNull
-    private Date eventDate;
+//    private Location location_id;
+    private Integer location_id;
+    private String eventDate;
+    private String eventTime;
     private String title;
-    private GameType gameType;
+    private Integer gameType;
     private Integer freeSlots;
-    private Location location;
+    private Integer player_id;
 
 
     // Constructors
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, Integer freeSlots) {
-        this.location = location;
+    public PlayEvent(Integer location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots, Integer player) {
+        this.location_id = location;
         this.eventDate = eventDate;
+        this.eventTime = eventTime;
         this.title = title;
         this.gameType = gameType;
         this.freeSlots = freeSlots;
+        this.player_id = player;
     }
     // Getters and Setters
 
@@ -43,34 +49,46 @@ public class PlayEvent implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     @JsonGetter("location")
-    public Location getLocation() {
-        return location;
+    public Integer getLocation() {
+        return location_id;
     }
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(Integer location) {
+        this.location_id = location;
     }
+
     @JsonGetter("eventDate")
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
+
+    @JsonGetter("eventDate")
+    public String getEventTime() {
+        return eventTime;
+    }
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
+    }
+
     @JsonGetter("title")
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
+
     @JsonGetter("gameType")
-    public GameType getGameType() {
-        return gameType;
-    }
-    public void setGameType(GameType gameType) {
-        this.gameType = gameType;
-    }
+    public Integer getGameType() { return gameType; }
+    public void setGameType(Integer gameType) { this.gameType = gameType; }
+
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
 
+    @JsonGetter("player")
+    public Integer getPlayer() { return player_id; }
+    public void setPlayer(Integer player) { this.player_id = player; }
 }
 
 
