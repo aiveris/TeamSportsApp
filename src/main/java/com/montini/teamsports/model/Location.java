@@ -24,7 +24,7 @@ public class Location  implements Serializable {
     private String address;
     private int maxCourts;
     private int freeCourts;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Transient
     @JsonIgnore
     private Set<PlayEvent> playEventSet;
 
