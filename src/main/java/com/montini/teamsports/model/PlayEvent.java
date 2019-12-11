@@ -19,22 +19,19 @@ public class PlayEvent implements Serializable {
     private Integer id;
 
     @NotNull
-    private Date eventDate;
+    private Location location_id;
+    private String eventDate;
     private String title;
-    private GameType gameType;
+    private Integer gameType;
     private Integer freeSlots;
-
-    private Location location;
-
-
 
 
     // Constructors
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, Integer freeSlots) {
-        this.location = location;
+    public PlayEvent(Location location, String eventDate, String title, Integer gameType, Integer freeSlots) {
+        this.location_id = location;
         this.eventDate = eventDate;
         this.title = title;
         this.gameType = gameType;
@@ -47,30 +44,31 @@ public class PlayEvent implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     @JsonGetter("location")
     public Location getLocation() {
-        return location;
+        return location_id;
     }
     public void setLocation(Location location) {
-        this.location = location;
+        this.location_id = location;
     }
+
     @JsonGetter("eventDate")
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
+
     @JsonGetter("title")
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
+
     @JsonGetter("gameType")
-    public GameType getGameType() {
-        return gameType;
-    }
-    public void setGameType(GameType gameType) {
-        this.gameType = gameType;
-    }
+    public Integer getGameType() { return gameType; }
+    public void setGameType(Integer gameType) { this.gameType = gameType; }
+
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
