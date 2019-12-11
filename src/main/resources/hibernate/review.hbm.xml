@@ -5,9 +5,13 @@
 
 <hibernate-mapping package="com.montini.teamsports.model">
     <class name="Review" table="review">
-        <id name="id" column="id">
+        <id name="id" column="review_id">
         </id>
+
         <property name="timestamp" column="timestamp" type="timestamp"/>
         <property name="description" column="description" type="string"/>
+
+
+
     </class>
 </hibernate-mapping>

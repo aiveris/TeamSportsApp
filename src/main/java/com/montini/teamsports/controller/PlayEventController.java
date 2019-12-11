@@ -4,11 +4,8 @@ import com.montini.teamsports.model.PlayEvent;
 import com.montini.teamsports.service.PlayEventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,28 +16,29 @@ public class PlayEventController {
     private PlayEventService playEventService;
 
     @RequestMapping(value = "playEvents", method = RequestMethod.GET)
-    public ResponseEntity<Object> list() {
-        return new ResponseEntity<>(playEventService.getAll(), HttpStatus.OK);
+    public List<PlayEvent> list() {
+        return playEventService.getAllPlayEvent();
     }
 
     @RequestMapping(value = "playEvents", method = RequestMethod.POST)
     public PlayEvent create(@RequestBody PlayEvent playEvent) {
-        return playEventService.create(playEvent);
+        return playEventService.savePlayEvent(playEvent);
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.GET)
-    public Serializable get(@PathVariable int id) {
-        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
-        return playEventOptional.orElse(null);
+    public PlayEvent get(@PathVariable Integer id) {
+
+        PlayEvent playEventOptional = playEventService.getPlayEvent(id);
+        return playEventOptional;
     }
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.PUT)
-    public PlayEvent update(@PathVariable Integer id, @RequestBody PlayEvent playEvent) {
-        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
+    public PlayEvent update(@PathVariable int id, @RequestBody PlayEvent playEvent) {
+        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.getPlayEvent(id));
         PlayEvent existPlayEvent = playEventOptional.orElse(null);
         if (existPlayEvent != null) {
             BeanUtils.copyProperties(playEvent, existPlayEvent);
-            return playEventService.create(existPlayEvent);
+            return playEventService.savePlayEvent(existPlayEvent);
         } else {
             return null;
         }
@@ -48,10 +46,10 @@ public class PlayEventController {
 
     @RequestMapping(value = "playEvents/{id}", method = RequestMethod.DELETE)
     public PlayEvent delete(@PathVariable Integer id) {
-        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.get(id));
+        Optional<PlayEvent> playEventOptional = Optional.ofNullable(playEventService.getPlayEvent(id));
         PlayEvent existPlayEvent = playEventOptional.orElse(null);
         if (existPlayEvent != null) {
-            playEventService.delete(existPlayEvent.getId());
+            playEventService.deletePlayEvent(id);
         }
         return existPlayEvent;
     }

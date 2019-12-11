@@ -1,7 +1,6 @@
 package com.montini.teamsports.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,26 +13,31 @@ public class Player implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "player_id", unique = true, nullable = false)
+    private Integer id;
 
     @NotNull
     private String username, password, email;
     @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
-    // private List<PlayEvent> myEventList;
-
-    // Constructors
-
     public Player() {}
 
-// Getters and Setters
 
+
+    public Player(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull Integer rank, Integer userType) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.rank = rank;
+        this.userType = userType;
+    }
+
+    // Getters and Setters
     @JsonGetter("id")
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
     @JsonGetter("username")
     public String getUsername() { return username; }
@@ -54,7 +58,5 @@ public class Player implements Serializable {
     @JsonGetter("user_type")
     public Integer getUserType() { return userType; }
     public void setUserType(Integer userType) { this.userType = userType; }
-
-    // Methods
 
 }

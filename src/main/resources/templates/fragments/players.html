@@ -29,6 +29,9 @@
                                         <td th:text="${player.getUsername()}"></td>
                                         <td th:text="${player.getRank()}"></td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2"><button class="btn btn-outline-primary btn-block btn-sm" id="btn-add-player" type="button" data-toggle="modal" data-target="#addplayer">Add</button></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -36,6 +39,52 @@
                 </div>
             </div>
         </section>
+
+        <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="addplayer"
+             style="background-color: #343a40;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-uppercase" style="background-color: #343a40;">
+                        <h4 class="modal-title">Add new player</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #343a40;">
+                        <div class="col" style="margin-left: 0;">
+                            <form th:action="@{/addPlayer}" th:object="${player}" method="post" class="custom-form" style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
+                                <div class="form-row form-group">
+                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Player
+                                        name </label></div>
+                                    <div class="col-sm-6 input-column"><input type="text" class="form-control" id="name-input-field" th:value="*{username}"/></div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Email </label>
+                                    </div>
+                                    <div class="col-sm-6 input-column"><input type="email" class="form-control" id="email-input-field" th:value="*{email}"/></div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="password-input-field">Password </label>
+                                    </div>
+                                    <div class="col-sm-6 input-column"><input type="password" class="form-control" id="password-input-field" th:value="*{password}"/></div>
+                                </div>
+<!--                                <div class="form-row form-group">-->
+<!--                                    <div class="col-sm-4 label-column"><label class="col-form-label"-->
+<!--                                                                              for="repeat-pawssword-input-field">Repeat-->
+<!--                                        Password </label></div>-->
+<!--                                    <div class="col-sm-6 input-column"><input type="password" class="form-control" id="password2" th:value="*{password}"/></div>-->
+<!--                                </div>-->
+                                <input type="submit" value="Submit" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" style="background-color: #343a40;">
+                        <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="button">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <th:block th:replace="fragments/footer"></th:block>
 

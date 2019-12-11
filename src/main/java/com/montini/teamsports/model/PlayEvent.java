@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
+
 @Entity
 @Table(name = "playevent")
 public class PlayEvent implements Serializable {
@@ -13,28 +14,27 @@ public class PlayEvent implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "playevent_id", unique = true, nullable = false)
     private Integer id;
 
     @NotNull
-    private Date eventDate;
+    private Location location_id;
+    private String eventDate;
     private String title;
-    private String organiser;
+    private Integer gameType;
     private Integer freeSlots;
 
-    @ManyToOne
-    private Location location;
 
     // Constructors
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, Date eventDate, String title, String organiser, Integer freeSlots) {
-        this.location = location;
+    public PlayEvent(Location location, String eventDate, String title, Integer gameType, Integer freeSlots) {
+        this.location_id = location;
         this.eventDate = eventDate;
         this.title = title;
-        this.organiser = organiser;
+        this.gameType = gameType;
         this.freeSlots = freeSlots;
     }
     // Getters and Setters
@@ -47,17 +47,17 @@ public class PlayEvent implements Serializable {
 
     @JsonGetter("location")
     public Location getLocation() {
-        return location;
+        return location_id;
     }
     public void setLocation(Location location) {
-        this.location = location;
+        this.location_id = location;
     }
 
     @JsonGetter("eventDate")
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
-    public void setEventDate(Date eventDate) {
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
 
@@ -65,9 +65,9 @@ public class PlayEvent implements Serializable {
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
-    @JsonGetter("organiser")
-    public String getOrganiser() { return organiser; }
-    public void setOrganiser(String organiser) { this.organiser = organiser; }
+    @JsonGetter("gameType")
+    public Integer getGameType() { return gameType; }
+    public void setGameType(Integer gameType) { this.gameType = gameType; }
 
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() { return freeSlots; }
