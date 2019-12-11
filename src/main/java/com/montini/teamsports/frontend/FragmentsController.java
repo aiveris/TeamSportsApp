@@ -66,4 +66,10 @@ public class FragmentsController {
     {
         return new Player();
     }
+
+    @ModelAttribute(value = "playEvent")
+    public PlayEvent getPlayEvent()
+    {
+        return new PlayEvent();
+    }
 }

@@ -15,27 +15,32 @@ public class PlayEvent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "playevent_id", unique = true, nullable = false)
+    @Column(name = "playvent_id", unique = true, nullable = false)
     private Integer id;
 
     @NotNull
-    private Location location_id;
+//    private Location location_id;
+    private Integer location_id;
     private String eventDate;
+    private String eventTime;
     private String title;
     private Integer gameType;
     private Integer freeSlots;
+    private Integer player_id;
 
 
     // Constructors
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, String eventDate, String title, Integer gameType, Integer freeSlots) {
+    public PlayEvent(Integer location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots, Integer player) {
         this.location_id = location;
         this.eventDate = eventDate;
+        this.eventTime = eventTime;
         this.title = title;
         this.gameType = gameType;
         this.freeSlots = freeSlots;
+        this.player_id = player;
     }
     // Getters and Setters
 
@@ -46,10 +51,10 @@ public class PlayEvent implements Serializable {
     }
 
     @JsonGetter("location")
-    public Location getLocation() {
+    public Integer getLocation() {
         return location_id;
     }
-    public void setLocation(Location location) {
+    public void setLocation(Integer location) {
         this.location_id = location;
     }
 
@@ -59,6 +64,14 @@ public class PlayEvent implements Serializable {
     }
     public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
+    }
+
+    @JsonGetter("eventDate")
+    public String getEventTime() {
+        return eventTime;
+    }
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
     }
 
     @JsonGetter("title")
@@ -73,6 +86,9 @@ public class PlayEvent implements Serializable {
     public Integer getFreeSlots() { return freeSlots; }
     public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
 
+    @JsonGetter("player")
+    public Integer getPlayer() { return player_id; }
+    public void setPlayer(Integer player) { this.player_id = player; }
 }
 
 
