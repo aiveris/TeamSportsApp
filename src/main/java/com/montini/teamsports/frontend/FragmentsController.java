@@ -32,7 +32,7 @@ public class FragmentsController {
 
     @RequestMapping("/events")
     public String eventsDisplay(Model model) {
-        Collection<PlayEvent> playEventCollection = playEventService.getAll();
+        Collection<PlayEvent> playEventCollection = playEventService.getAllPlayEvent();
         model.addAttribute("playevents", playEventCollection);
         return "fragments/events";
     }
