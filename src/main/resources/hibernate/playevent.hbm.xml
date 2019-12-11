@@ -21,7 +21,7 @@
             </type>
         </property>
         <property name = "freeSlots" column = "free_Slots" type = "int"/>
-        <many-to-one name="location" class="Location"
+        <many-to-one name="location" class="Location" lazy="false"
                      column="location_id" not-null="true" cascade="all"/>
 
 

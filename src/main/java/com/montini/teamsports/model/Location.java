@@ -24,7 +24,6 @@ public class Location  implements Serializable {
     private String address;
     private int maxCourts;
     private int freeCourts;
-    @Transient
     @JsonIgnore
     private Set<PlayEvent> playEventSet;
 
