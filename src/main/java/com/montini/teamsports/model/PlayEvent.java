@@ -1,4 +1,5 @@
 package com.montini.teamsports.model;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class PlayEvent implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "playevent_id", unique = true, nullable = false)
     private Integer id;
 
@@ -22,7 +23,10 @@ public class PlayEvent implements Serializable {
     private String title;
     private GameType gameType;
     private Integer freeSlots;
+
     private Location location;
+
+
 
 
     // Constructors

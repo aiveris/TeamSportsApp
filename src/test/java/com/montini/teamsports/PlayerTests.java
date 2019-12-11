@@ -24,7 +24,7 @@ public class PlayerTests {
             player.setEmail("lemontini@gmail.com");
             player.setUserType(0);
             player.setRank(1);
-            session.persist(player);
+            session.save(player);
 
             txn.commit();
         } catch (RuntimeException e) {

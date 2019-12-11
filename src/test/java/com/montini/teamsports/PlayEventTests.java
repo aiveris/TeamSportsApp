@@ -43,10 +43,17 @@ public class PlayEventTests {
             playEvent.setTitle("kokoko");
             playEvent.setFreeSlots(4);
 
-
+            PlayEvent playEvent2 = new PlayEvent();
+            playEvent2.setEventDate(new Date(Calendar.getInstance().getTime().getTime()));
+            playEvent2.setLocation(l1);
+            playEvent2.setGameType(GameType.SINGLES_OPEN);
+            playEvent2.setTitle("asasaas");
+            playEvent2.setFreeSlots(2);
 
             session.save(l1);
             session.save(playEvent);
+            session.save(playEvent2);
+
 
             txn.commit();
         } catch (RuntimeException e) {
