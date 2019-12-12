@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,6 +46,15 @@ public class FragmentsController {
         return "fragments/events";
     }
 
+
+    @ModelAttribute(value = "playEvent")
+    public PlayEvent getPlayEvent()
+    {
+        return new PlayEvent();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
     @RequestMapping("/locations")
     public String locationsDisplay(Model model) {
         Collection<Location> locationCollection = locationService.getAllLocation();
@@ -52,18 +62,26 @@ public class FragmentsController {
         return "fragments/locations";
     }
 
+    @RequestMapping(value = "/addLocation", method = RequestMethod.POST)
+    public String addLocation(@ModelAttribute("locationForm") Location newLocation) {
+        newLocation.setName(newLocation.getName());
+        newLocation.setAddress(newLocation.getAddress());
+        newLocation.setMaxCourts(newLocation.getMaxCourts());
+        newLocation.setFreeCourts(1);
+        locationService.saveLocation(newLocation);
+        return "redirect:/locations";
+    }
+
+    @ModelAttribute(value = "locationForm")
+    public Location getLocation() {return new Location();}
+
+    ///////////////////////////////////////////////////////////////////////////////
+
     @RequestMapping("/players")
     public String playersDisplay(Model model){
         Collection<Player> playerSet = playerService.getAll();
         model.addAttribute("players", playerSet);
         return "fragments/players";
-    }
-
-    @RequestMapping("/reviews")
-    public String reviewsDisplay(Model model){
-        List<Review> reviewsList= reviewService.getAll();
-        model.addAttribute("reviews", reviewsList);
-        return "fragments/reviews";
     }
 
     @RequestMapping(value = "/addPlayer", method = RequestMethod.POST)
@@ -80,15 +98,24 @@ public class FragmentsController {
         return new Player();
     }
 
-    @ModelAttribute(value = "playEvent")
-    public PlayEvent playEvent()
-    {
-        return new PlayEvent();
+    ///////////////////////////////////////////////////////////////////////////////
+
+    @RequestMapping("/reviews")
+    public String reviewsDisplay(Model model){
+        List<Review> reviewsList= reviewService.getAll();
+        model.addAttribute("reviews", reviewsList);
+        return "fragments/reviews";
     }
 
-    @ModelAttribute(value = "location")
-    public Location playLocation()
-    {
-        return new Location();
+    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
+    public String addReview(@ModelAttribute("reviewForm") Review newReview) {
+        newReview.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        newReview.setDescription(newReview.getDescription());
+        reviewService.create(newReview);
+        return "redirect:/reviews";
     }
+
+    @ModelAttribute(value = "reviewForm")
+    public Review getReview() {return new Review();}
+
 }

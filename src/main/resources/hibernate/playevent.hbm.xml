@@ -15,6 +15,7 @@
         <property name = "gameType" column = "gameType" type = "int"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
         <property name = "player" column = "player_id" type = "int"/>
+        <property name = "review" column = "review_id" type = "int"/>
 
     </class>
 </hibernate-mapping>

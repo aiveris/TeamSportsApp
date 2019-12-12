@@ -27,6 +27,7 @@ public class PlayEvent implements Serializable {
     private Integer gameType;
     private Integer freeSlots;
     private Integer player_id;
+    private Integer review_id;
 
 
     // Constructors
@@ -34,7 +35,7 @@ public class PlayEvent implements Serializable {
     public PlayEvent() {
     }
 
-    public PlayEvent(Integer location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots, Integer player) {
+    public PlayEvent(Integer location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots, Integer player, Integer review) {
         this.location_id = location;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
@@ -42,6 +43,7 @@ public class PlayEvent implements Serializable {
         this.gameType = gameType;
         this.freeSlots = freeSlots;
         this.player_id = player;
+        this.review_id = review;
     }
     // Getters and Setters
 
@@ -101,7 +103,7 @@ public class PlayEvent implements Serializable {
 
     @JsonGetter("freeSlots")
     public Integer getFreeSlots() {
-        return gameType;
+        return freeSlots;
     }
 
     public void setFreeSlots(Integer freeSlots) {
@@ -118,6 +120,14 @@ public class PlayEvent implements Serializable {
         this.player_id = player;
     }
 
+    @JsonGetter("review")
+    public Integer getReview() {
+        return review_id;
+    }
+
+    public void setReview(Integer review) {
+        this.review_id = review;
+    }
 
 }
 
