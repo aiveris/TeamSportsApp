@@ -37,17 +37,17 @@ public class PlayEventTests {
             l1.setFreeCourts(4);
 
             PlayEvent playEvent = new PlayEvent();
-            playEvent.setEventDate(new Date(Calendar.getInstance().getTime().getTime()));
-            playEvent.setLocation(l1);
-            playEvent.setGameType(GameType.SINGLES_CLOSE);
+            playEvent.setLocation(1);
+            playEvent.setEventDate("2019-12-11");
             playEvent.setTitle("kokoko");
+            playEvent.setGameType(1);
             playEvent.setFreeSlots(4);
 
             PlayEvent playEvent2 = new PlayEvent();
-            playEvent2.setEventDate(new Date(Calendar.getInstance().getTime().getTime()));
-            playEvent2.setLocation(l1);
-            playEvent2.setGameType(GameType.SINGLES_OPEN);
+            playEvent2.setLocation(1);
+            playEvent2.setEventDate("2019-12-11");
             playEvent2.setTitle("asasaas");
+            playEvent2.setGameType(1);
             playEvent2.setFreeSlots(2);
 
             session.save(l1);

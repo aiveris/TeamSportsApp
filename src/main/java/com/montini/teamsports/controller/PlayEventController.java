@@ -1,14 +1,10 @@
 package com.montini.teamsports.controller;
 
-
 import com.montini.teamsports.model.PlayEvent;
-import com.montini.teamsports.model.PlayEvent;
-import com.montini.teamsports.service.PlayEventService;
 import com.montini.teamsports.service.PlayEventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 

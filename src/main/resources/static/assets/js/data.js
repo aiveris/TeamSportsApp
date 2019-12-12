@@ -1,5 +1,5 @@
-$('.dataView').hide();
-var $currentContent = $('#events');
+// $('.dataView').hide();
+// var $currentContent = $('#events');
 
 // $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function());
 
@@ -21,5 +21,5 @@ $('.nav').on('click', '.nav-link', function(e) {
 
 // show '#events' content on page load
 // showContent('#events');
-$currentContent.hide();
-$currentContent.fadeIn('slow');
+// $currentContent.hide();
+// $currentContent.fadeIn('slow');

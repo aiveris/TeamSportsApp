@@ -11,13 +11,16 @@ CREATE TABLE location
 
 CREATE TABLE playevent
 (
-	location_id int NOT NULL,
     playevent_id    int primary key not null auto_increment,
-    event_Date      date,
-    title           char(25),
-    free_Slots      int,
-     unique (playevent_id),
-     KEY FK_playevent_location (location_id),
+	location_id     int NOT NULL,
+    eventDate       varchar(25),
+    eventTime       varchar(25),
+    title           varchar(25),
+    gameType        int,
+    freeSlots       int,
+    player_id       int,
+    unique (playevent_id),
+    KEY FK_playevent_location (location_id),
   CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id)
 );
 

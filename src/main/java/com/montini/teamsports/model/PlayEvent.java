@@ -19,61 +19,105 @@ public class PlayEvent implements Serializable {
     private Integer id;
 
     @NotNull
-    private Date eventDate;
+//    private Location location_id;
+    private Integer location_id;
+    private String eventDate;
+    private String eventTime;
     private String title;
-    private GameType gameType;
+    private Integer gameType;
     private Integer freeSlots;
-
-    private Location location;
-
-
+    private Integer player_id;
 
 
     // Constructors
 
-    public PlayEvent() {}
+    public PlayEvent() {
+    }
 
-    public PlayEvent(Location location, Date eventDate, String title, GameType gameType, Integer freeSlots) {
-        this.location = location;
+    public PlayEvent(Integer location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots, Integer player) {
+        this.location_id = location;
         this.eventDate = eventDate;
+        this.eventTime = eventTime;
         this.title = title;
         this.gameType = gameType;
         this.freeSlots = freeSlots;
+        this.player_id = player;
     }
     // Getters and Setters
 
     @JsonGetter("id")
-    public Integer getId() { return id; }
+    public Integer getId() {
+        return id;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     @JsonGetter("location")
-    public Location getLocation() {
-        return location;
+    public Integer getLocation() {
+        return location_id;
     }
-    public void setLocation(Location location) {
-        this.location = location;
+
+    public void setLocation(Integer location) {
+        this.location_id = location;
     }
+
+    @JsonGetter("eventTime")
+    public String getEventTime() {
+        return eventTime;
+    }
+
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
+    }
+
     @JsonGetter("eventDate")
-    public Date getEventDate() {
+    public String getEventDate() {
         return eventDate;
     }
-    public void setEventDate(Date eventDate) {
+
+    public void setEventDate(String eventDate) {
         this.eventDate = eventDate;
     }
+
     @JsonGetter("title")
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @JsonGetter("gameType")
-    public GameType getGameType() {
+    public Integer getGameType() {
         return gameType;
     }
-    public void setGameType(GameType gameType) {
+
+    public void setGameType(Integer gameType) {
         this.gameType = gameType;
     }
+
     @JsonGetter("freeSlots")
-    public Integer getFreeSlots() { return freeSlots; }
-    public void setFreeSlots(Integer freeSlots) { this.freeSlots = freeSlots; }
+    public Integer getFreeSlots() {
+        return gameType;
+    }
+
+    public void setFreeSlots(Integer freeSlots) {
+        this.freeSlots = freeSlots;
+    }
+
+
+    @JsonGetter("player")
+    public Integer getPlayer() {
+        return player_id;
+    }
+
+    public void setPlayer(Integer player) {
+        this.player_id = player;
+    }
+
 
 }
 
