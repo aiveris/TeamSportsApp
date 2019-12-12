@@ -72,4 +72,10 @@ public class FragmentsController {
     {
         return new PlayEvent();
     }
+
+    @ModelAttribute(value = "location")
+    public Location playLocation()
+    {
+        return new Location();
+    }
 }

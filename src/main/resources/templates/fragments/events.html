@@ -40,6 +40,7 @@
                                         <td th:text="${event.getTitle()}"></td>
                                         <td th:text="${event.getGameType()}"></td>
                                         <td th:text="${event.getFreeSlots()}"></td>
+                                        <td th:text="${event.getPlayer()}"></td>
 <!--                                        <td>[TODO: Button with a modal list]</td>-->
 <!--                                        <td>[TODO: Button with a modal list]</td>-->
                                     </tr>
@@ -58,6 +59,7 @@
                 </div>
             </div>
         </section>
+
         <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="addevent"
              style="background-color: #343a40;">
             <div class="modal-dialog modal-dialog-centered" role="document">
