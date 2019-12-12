@@ -1,4 +1,16 @@
+DROP TABLE IF EXISTS player;
+CREATE TABLE player
+(
+    player_id       int primary key not null auto_increment,
+    username        varchar(30),
+    password        varchar(30),
+    email           varchar(50),
+    user_rank       int,
+    user_type       int,
+    unique (player_id)
+);
 
+DROP TABLE IF EXISTS location;
 CREATE TABLE location
 (
     location_id   int primary key not null auto_increment,
@@ -6,9 +18,9 @@ CREATE TABLE location
     name          varchar(255),
     max_Courts    int,
     free_Courts   int,
-	unique (location_id)
+    unique (location_id)
 );
-
+DROP TABLE IF EXISTS playevent;
 CREATE TABLE playevent
 (
     playevent_id    int primary key not null auto_increment,
@@ -23,17 +35,6 @@ CREATE TABLE playevent
     unique (playevent_id),
     KEY FK_playevent_location (location_id),
   CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id)
-);
-
-CREATE TABLE player
-(
-    player_id       int primary key not null auto_increment,
-    username        varchar(30),
-    password        varchar(30),
-    email           varchar(50),
-    user_rank       int,
-    user_type       int,
-    unique (player_id)
 );
 
 DROP TABLE IF EXISTS review;
