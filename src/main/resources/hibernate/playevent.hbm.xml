@@ -7,7 +7,7 @@
     <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
         <meta attribute = "class-description">This class contains the play events detail.</meta>
         <id name = "id" type = "int" column = "playevent_id"><generator class="native"/></id>
-        <many-to-one name="location" class="Location" column="location_id" not-null="true" cascade="all"/>
+        <many-to-one name="location" class="Location" column="location_id" not-null="true" lazy="false" cascade="all"/>
         <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
         <property name = "eventTime" column = "eventTime" type = "java.sql.Time"/>
         <property name = "title" column = "title" type = "string"/>
