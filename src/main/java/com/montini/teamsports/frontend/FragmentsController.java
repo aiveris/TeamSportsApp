@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,12 +46,29 @@ public class FragmentsController {
         return "fragments/events";
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+
     @RequestMapping("/locations")
     public String locationsDisplay(Model model) {
         Collection<Location> locationCollection = locationService.getAllLocation();
         model.addAttribute("locations", locationCollection);
         return "fragments/locations";
     }
+
+    @RequestMapping(value = "/addLocation", method = RequestMethod.POST)
+    public String addLocation(@ModelAttribute("locationForm") Location newLocation) {
+        newLocation.setName(newLocation.getName());
+        newLocation.setAddress(newLocation.getAddress());
+        newLocation.setMaxCourts(newLocation.getMaxCourts());
+        newLocation.setFreeCourts(1);
+        locationService.saveLocation(newLocation);
+        return "redirect:/locations";
+    }
+
+    @ModelAttribute(value = "locationForm")
+    public Location getLocation() {return new Location();}
+
+    ///////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/players")
     public String playersDisplay(Model model){
@@ -78,5 +96,25 @@ public class FragmentsController {
     {
         return new PlayEvent();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    @RequestMapping("/reviews")
+    public String reviewsDisplay(Model model){
+        List<Review> reviewsList= reviewService.getAll();
+        model.addAttribute("reviews", reviewsList);
+        return "fragments/reviews";
+    }
+
+    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
+    public String addReview(@ModelAttribute("reviewForm") Review newReview) {
+        newReview.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        newReview.setDescription(newReview.getDescription());
+        reviewService.create(newReview);
+        return "redirect:/reviews";
+    }
+
+    @ModelAttribute(value = "reviewForm")
+    public Review getReview() {return new Review();}
 
 }
