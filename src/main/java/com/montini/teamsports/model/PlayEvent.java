@@ -111,7 +111,7 @@ public class PlayEvent implements Serializable {
 
     @JsonGetter("player")
     public Integer getPlayer() {
-        return freeSlots;
+        return player_id;
     }
 
     public void setPlayer(Integer player) {
