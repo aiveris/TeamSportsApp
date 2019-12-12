@@ -28,6 +28,7 @@
                                         <th>Type</th>
                                         <th>Free slots</th>
                                         <th>Attending</th>
+                                        <th>Review</th>
                                     </tr>
                                 </thead>
                                 <tbody id="eventsList">
@@ -41,8 +42,7 @@
                                         <td th:text="${event.getGameType()}"></td>
                                         <td th:text="${event.getFreeSlots()}"></td>
                                         <td th:text="${event.getPlayer()}"></td>
-<!--                                        <td>[TODO: Button with a modal list]</td>-->
-<!--                                        <td>[TODO: Button with a modal list]</td>-->
+                                        <td th:text="${event.getReview()}"></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">

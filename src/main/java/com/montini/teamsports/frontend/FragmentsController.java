@@ -46,6 +46,13 @@ public class FragmentsController {
         return "fragments/events";
     }
 
+
+    @ModelAttribute(value = "playEvent")
+    public PlayEvent getPlayEvent()
+    {
+        return new PlayEvent();
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/locations")
@@ -89,12 +96,6 @@ public class FragmentsController {
     public Player getPlayer()
     {
         return new Player();
-    }
-
-    @ModelAttribute(value = "playEvent")
-    public PlayEvent getPlayEvent()
-    {
-        return new PlayEvent();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
