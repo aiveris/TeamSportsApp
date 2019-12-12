@@ -15,7 +15,7 @@ public class PlayEvent implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "playevent_id", unique = true, nullable = false)
     private Integer id;
 

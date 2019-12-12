@@ -40,8 +40,14 @@ public class ReviewTest {
             review.setDescription("New message from team-sport user.");
             review.setPlayer(player);
 
+            Review review2 = new Review();
+            review2.setTimestamp(new Timestamp(System.currentTimeMillis()));
+            review2.setDescription("popo");
+            review2.setPlayer(player);
+
             session.persist(player);
             session.persist(review);
+            session.persist(review2);
 
             transaction.commit();
 

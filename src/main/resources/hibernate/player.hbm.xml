@@ -11,7 +11,7 @@
         </meta>
 
         <id name="id" type="int" column="player_id">
-            <generator class="native"/>
+            <generator class="identity"/>
         </id>
 
         <property name="username" column="username" type="string"/>

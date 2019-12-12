@@ -11,7 +11,7 @@
         </meta>
 
         <id name = "id" type = "int" column = "location_id">
-        <generator class="native"/>
+        <generator class="identity"/>
     </id>
 
         <property name = "address" column = "address" type = "string"/>

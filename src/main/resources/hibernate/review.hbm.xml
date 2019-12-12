@@ -6,6 +6,7 @@
 <hibernate-mapping package="com.montini.teamsports.model">
     <class name="Review" table="review">
         <id name="id" column="review_id">
+            <generator class="identity"/>
         </id>
 
         <property name="timestamp" column="timestamp" type="timestamp"/>
