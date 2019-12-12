@@ -13,8 +13,8 @@ CREATE TABLE playevent
 (
     playevent_id    int primary key not null auto_increment,
 	location_id     int NOT NULL,
-    eventDate       varchar(25),
-    eventTime       varchar(25),
+    eventDate       date,
+    eventTime       time,
     title           varchar(25),
     gameType        int,
     freeSlots       int,
@@ -36,10 +36,14 @@ CREATE TABLE player
     unique (player_id)
 );
 
+DROP TABLE IF EXISTS review;
 CREATE TABLE review
 (
     review_id   int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    player_id int not null,
     timestamp   datetime,
     description text,
-	unique (review_id)
+    unique (review_id),
+    KEY FK_player_review (player_id),
+  CONSTRAINT FK_player_review FOREIGN KEY (player_id) REFERENCES player (player_id)
 );

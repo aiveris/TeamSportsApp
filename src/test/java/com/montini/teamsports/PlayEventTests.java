@@ -1,6 +1,5 @@
 package com.montini.teamsports;
 
-import com.montini.teamsports.model.GameType;
 import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.PlayEvent;
 import org.hibernate.Session;
@@ -11,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
-import java.util.Calendar;
+import java.sql.Time;
 
 public class PlayEventTests {
     private static final Logger log = LoggerFactory.getLogger( PlayEvent.class );
@@ -37,18 +36,22 @@ public class PlayEventTests {
             l1.setFreeCourts(4);
 
             PlayEvent playEvent = new PlayEvent();
-            playEvent.setLocation(1);
-            playEvent.setEventDate("2019-12-11");
-            playEvent.setTitle("kokoko");
-            playEvent.setGameType(1);
-            playEvent.setFreeSlots(4);
+            playEvent.setLocation(l1);
+            playEvent.setEventDate(new Date(2019-12-12));
+            playEvent.setEventTime(new Time(System.currentTimeMillis()));
+            playEvent.setTitle("UFC");
+            playEvent.setGameType(2);
+            playEvent.setFreeSlots(5);
 
             PlayEvent playEvent2 = new PlayEvent();
-            playEvent2.setLocation(1);
-            playEvent2.setEventDate("2019-12-11");
-            playEvent2.setTitle("asasaas");
-            playEvent2.setGameType(1);
-            playEvent2.setFreeSlots(2);
+            playEvent2.setLocation(l1);
+            playEvent2.setEventDate(new Date(2019-12-12));
+            playEvent2.setEventTime(new Time(System.currentTimeMillis()));
+            playEvent2.setTitle("UFC");
+            playEvent2.setGameType(2);
+            playEvent2.setFreeSlots(5);
+
+
 
             session.save(l1);
             session.save(playEvent);

@@ -26,13 +26,13 @@ public class ReviewTest {
             transaction = session.beginTransaction();
 
 
+
             Player player = new Player();
             player.setUsername("Ignas");
             player.setPassword("kokokok");
             player.setEmail("jojo@jojo.com");
             player.setUserType(0);
             player.setRank(10);
-
 
 
             Review review = new Review();

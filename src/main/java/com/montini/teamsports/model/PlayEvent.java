@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Table(name = "playevent")
@@ -20,9 +21,9 @@ public class PlayEvent implements Serializable {
 
     @NotNull
 //    private Location location_id;
-    private Integer location_id;
-    private String eventDate;
-    private String eventTime;
+    private Location location;
+    private Date eventDate;
+    private Time eventTime;
     private String title;
     private Integer gameType;
     private Integer freeSlots;
@@ -35,8 +36,8 @@ public class PlayEvent implements Serializable {
     public PlayEvent() {
     }
 
-    public PlayEvent(Integer location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots, Integer player, Integer review) {
-        this.location_id = location;
+    public PlayEvent(Location location, Date eventDate, Time eventTime, String title, Integer gameType, Integer freeSlots, Integer player, Integer review) {
+        this.location = location;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.title = title;
@@ -57,29 +58,29 @@ public class PlayEvent implements Serializable {
     }
 
     @JsonGetter("location")
-    public Integer getLocation() {
-        return location_id;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocation(Integer location) {
-        this.location_id = location;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @JsonGetter("eventTime")
-    public String getEventTime() {
+    public Time getEventTime() {
         return eventTime;
     }
 
-    public void setEventTime(String eventTime) {
+    public void setEventTime(Time eventTime) {
         this.eventTime = eventTime;
     }
 
     @JsonGetter("eventDate")
-    public String getEventDate() {
+    public Date getEventDate() {
         return eventDate;
     }
 
-    public void setEventDate(String eventDate) {
+    public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
 
