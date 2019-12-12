@@ -21,7 +21,7 @@
                             <table class="table table-striped table-dark">
                                 <thead style="color: #f2c736;">
                                     <tr>
-                                        <th class="text-left" th:text="${review.getId()}"></th>
+                                        <th class="text-left" th:text="${review.getPlayer().getUsername()}"></th>
                                         <th class="text-right" th:text="${#dates.format(review.getTimestamp(), 'dd-MM-yyyy HH:mm')}"></th>
                                     </tr>
                                 </thead>
