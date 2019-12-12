@@ -19,6 +19,7 @@ CREATE TABLE playevent
     gameType        int,
     freeSlots       int,
     player_id       int,
+    review_id       int,
     unique (playevent_id),
     KEY FK_playevent_location (location_id),
   CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id)
