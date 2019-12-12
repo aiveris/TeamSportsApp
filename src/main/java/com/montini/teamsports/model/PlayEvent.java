@@ -1,12 +1,15 @@
 package com.montini.teamsports.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "playevent")
@@ -27,8 +30,11 @@ public class PlayEvent implements Serializable {
     private String title;
     private Integer gameType;
     private Integer freeSlots;
-    private Integer player_id;
     private Integer review_id;
+
+
+    @JsonIgnore
+    private Set<Player> players = new HashSet<Player>(0);
 
 
     // Constructors
@@ -36,14 +42,13 @@ public class PlayEvent implements Serializable {
     public PlayEvent() {
     }
 
-    public PlayEvent(Location location, Date eventDate, Time eventTime, String title, Integer gameType, Integer freeSlots, Integer player, Integer review) {
+    public PlayEvent(Location location, Date eventDate, Time eventTime, String title, Integer gameType, Integer freeSlots, Integer review) {
         this.location = location;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.title = title;
         this.gameType = gameType;
         this.freeSlots = freeSlots;
-        this.player_id = player;
         this.review_id = review;
     }
     // Getters and Setters
@@ -112,15 +117,6 @@ public class PlayEvent implements Serializable {
     }
 
 
-    @JsonGetter("player")
-    public Integer getPlayer() {
-        return player_id;
-    }
-
-    public void setPlayer(Integer player) {
-        this.player_id = player;
-    }
-
     @JsonGetter("review")
     public Integer getReview() {
         return review_id;
@@ -130,6 +126,14 @@ public class PlayEvent implements Serializable {
         this.review_id = review;
     }
 
+    @JsonGetter("players")
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
+    }
 }
 
 

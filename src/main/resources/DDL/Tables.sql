@@ -30,7 +30,6 @@ CREATE TABLE playevent
     title           varchar(25),
     gameType        int,
     freeSlots       int,
-    player_id       int,
     review_id       int,
     unique (playevent_id),
     KEY FK_playevent_location (location_id),
@@ -48,3 +47,13 @@ CREATE TABLE review
     KEY FK_player_review (player_id),
   CONSTRAINT FK_player_review FOREIGN KEY (player_id) REFERENCES player (player_id)
 );
+
+DROP TABLE IF EXISTS player_playevent;
+CREATE TABLE player_playevent
+(
+	player_id 		int not null,
+    playevent_id 	int not null,
+	primary key(player_id, playevent_id),
+    constraint fk_player_id foreign key (player_id) references player (player_id),
+    constraint fk_playevent_id foreign key (playevent_id) references playevent (playevent_id)
+)

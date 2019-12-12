@@ -21,9 +21,20 @@
         <property name="userType" column="user_type" type="int"/>
 
 
-        <set name="reviewSet" inverse="true" cascade="all">
-            <key column="player_id" not-null="true" />
+        <set  name="reviewSet" inverse="true" cascade="all">
+            <key   column="player_id" not-null="true" />
             <one-to-many class="com.montini.teamsports.model.Review"/>
+        </set>
+
+        <set name="playEvents" table="player_playevent"
+             inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column  name="player_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.montini.teamsports.model.PlayEvent">
+                <column name="playevent_id" not-null="true" />
+            </many-to-many>
+
         </set>
 
         <!--<property name="userType">-->

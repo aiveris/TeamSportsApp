@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,9 +25,12 @@ public class Player implements Serializable {
     @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
-    @Transient
+
     @JsonIgnore
     private Set<Review> reviewSet;
+
+    @JsonIgnore
+    private Set<PlayEvent> playEvents = new HashSet<PlayEvent>(0);
 
 
     public Player() {}
@@ -66,6 +70,13 @@ public class Player implements Serializable {
     public Integer getUserType() { return userType; }
     public void setUserType(Integer userType) { this.userType = userType; }
 
+    public Set<PlayEvent> getPlayEvents() {
+        return playEvents;
+    }
+
+    public void setPlayEvents(Set<PlayEvent> playEvents) {
+        this.playEvents = playEvents;
+    }
 
     public Set<Review> getReviewSet() {
         return reviewSet;

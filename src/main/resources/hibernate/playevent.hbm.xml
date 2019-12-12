@@ -13,8 +13,18 @@
         <property name = "title" column = "title" type = "string"/>
         <property name = "gameType" column = "gameType" type = "int"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
-        <property name = "player" column = "player_id" type = "int"/>
         <property name = "review" column = "review_id" type = "int"/>
+
+
+        <set name="players" table="player_playevent"
+             inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="playevent_id" not-null="true"   />
+            </key>
+            <many-to-many entity-name="com.montini.teamsports.model.Player">
+                <column name="player_id" not-null="true" />
+            </many-to-many>
+        </set>
 
     </class>
 </hibernate-mapping>
