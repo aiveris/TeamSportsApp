@@ -26,6 +26,7 @@ public class ReviewTest {
             transaction = session.beginTransaction();
 
 
+
             Player player = new Player();
             player.setUsername("Ignas");
             player.setPassword("kokokok");
@@ -34,13 +35,13 @@ public class ReviewTest {
             player.setRank(10);
 
 
-
             Review review = new Review();
             review.setTimestamp(new Timestamp(System.currentTimeMillis()));
             review.setDescription("New message from team-sport user.");
+            review.setPlayer(player);
 
-            session.save(player);
-            session.save(review);
+            session.persist(player);
+            session.persist(review);
 
             transaction.commit();
 

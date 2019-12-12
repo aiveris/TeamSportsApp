@@ -1,10 +1,12 @@
 package com.montini.teamsports.model;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "player")
@@ -22,6 +24,11 @@ public class Player implements Serializable {
     @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
+    @Transient
+    @JsonIgnore
+    private Set<Review> reviewSet;
+
+
     public Player() {}
 
 
@@ -59,4 +66,12 @@ public class Player implements Serializable {
     public Integer getUserType() { return userType; }
     public void setUserType(Integer userType) { this.userType = userType; }
 
+
+    public Set<Review> getReviewSet() {
+        return reviewSet;
+    }
+
+    public void setReviewSet(Set<Review> reviewSet) {
+        this.reviewSet = reviewSet;
+    }
 }

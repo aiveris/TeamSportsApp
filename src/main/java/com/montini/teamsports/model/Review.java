@@ -22,6 +22,8 @@ public class Review {
     @Column(name = "description")
     private String description;
 
+    private Player player;
+
 
     // Constructors
     public Review() {
@@ -61,4 +63,12 @@ public class Review {
         this.description = description;
     }
 
+    @JsonGetter("player")
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }

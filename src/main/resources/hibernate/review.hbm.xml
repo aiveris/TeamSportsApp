@@ -11,6 +11,7 @@
         <property name="timestamp" column="timestamp" type="timestamp"/>
         <property name="description" column="description" type="string"/>
 
+        <many-to-one name="player" class="Player" column="player_id" not-null="true" lazy="false" cascade="all"/>
 
 
     </class>

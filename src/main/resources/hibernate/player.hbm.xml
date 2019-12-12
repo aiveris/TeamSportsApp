@@ -20,6 +20,12 @@
         <property name="rank" column="user_rank" type="int"/>
         <property name="userType" column="user_type" type="int"/>
 
+
+        <set name="reviewSet" inverse="true" cascade="all">
+            <key column="player_id" not-null="true" />
+            <one-to-many class="com.montini.teamsports.model.Review"/>
+        </set>
+
         <!--<property name="userType">-->
         <!--    <type name="org.hibernate.type.EnumType">-->
         <!--        <param name="enumClass">com.montini.teamsports.model.UserType</param>-->

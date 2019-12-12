@@ -18,7 +18,7 @@
         <property name = "name" column = "name" type = "string"/>
         <property name = "maxCourts" column = "max_Courts" type = "int"/>
         <property name = "freeCourts" column = "free_Courts" type = "int"/>
-        <set name="playEventSet" inverse="true" cascade="all" lazy="false">
+        <set name="playEventSet" inverse="true" cascade="all">
             <key column="location_id" not-null="true" />
             <one-to-many class="com.montini.teamsports.model.PlayEvent"/>
         </set>
