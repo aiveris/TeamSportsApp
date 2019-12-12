@@ -14,6 +14,7 @@ CREATE TABLE playevent
     playevent_id    int primary key not null auto_increment,
 	location_id     int NOT NULL,
     eventDate       varchar(25),
+    eventTime       varchar(25),
     title           varchar(25),
     gameType        int,
     freeSlots       int,

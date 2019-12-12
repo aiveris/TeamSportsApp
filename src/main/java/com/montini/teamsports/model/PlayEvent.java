@@ -21,6 +21,7 @@ public class PlayEvent implements Serializable {
     @NotNull
     private Location location_id;
     private String eventDate;
+    private String eventTime;
     private String title;
     private Integer gameType;
     private Integer freeSlots;
@@ -30,9 +31,10 @@ public class PlayEvent implements Serializable {
 
     public PlayEvent() {}
 
-    public PlayEvent(Location location, String eventDate, String title, Integer gameType, Integer freeSlots) {
+    public PlayEvent(Location location, String eventDate, String eventTime, String title, Integer gameType, Integer freeSlots) {
         this.location_id = location;
         this.eventDate = eventDate;
+        this.eventTime = eventTime;
         this.title = title;
         this.gameType = gameType;
         this.freeSlots = freeSlots;
@@ -51,6 +53,14 @@ public class PlayEvent implements Serializable {
     }
     public void setLocation(Location location) {
         this.location_id = location;
+    }
+
+    @JsonGetter("eventTime")
+    public String getEventTime() {
+        return eventTime;
+    }
+    public void setEventTime(String eventTime) {
+        this.eventTime = eventTime;
     }
 
     @JsonGetter("eventDate")

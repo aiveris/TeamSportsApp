@@ -10,6 +10,7 @@
         <many-to-one name="location" class="Location" column="location_id" not-null="true" cascade="all"/>
 <!--        <property name = "location" column = "location_id" type = "int"/>-->
         <property name = "eventDate" column = "eventDate" type = "string"/>
+        <property name = "eventTime" column = "eventTime" type = "string"/>
         <property name = "title" column = "title" type = "string"/>
         <property name = "gameType" column = "gameType" type = "int"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
