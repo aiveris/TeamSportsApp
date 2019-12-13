@@ -13,7 +13,7 @@
         <property name = "title" column = "title" type = "string"/>
         <property name = "gameType" column = "gameType" type = "int"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
-        <property name = "review" column = "review_id" type = "int"/>
+
 
 
         <set name="players" table="player_playevent"
