@@ -6,15 +6,30 @@
 <hibernate-mapping package="com.montini.teamsports.model">
     <class name = "com.montini.teamsports.model.PlayEvent" table = "playevent">
         <meta attribute = "class-description">This class contains the play events detail.</meta>
-        <id name = "id" type = "int" column = "playevent_id"><generator class="native"/></id>
+        <id name = "id" type = "int" column = "playevent_id"><generator class="identity"/></id>
         <many-to-one name="location" class="Location" column="location_id" not-null="true" lazy="false" cascade="all"/>
         <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
         <property name = "eventTime" column = "eventTime" type = "java.sql.Time"/>
         <property name = "title" column = "title" type = "string"/>
         <property name = "gameType" column = "gameType" type = "int"/>
         <property name = "freeSlots" column = "freeSlots" type = "int"/>
-        <property name = "player" column = "player_id" type = "int"/>
-        <property name = "review" column = "review_id" type = "int"/>
+
+
+
+        <set name="players" table="player_playevent"
+             inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column name="playevent_id" not-null="true"   />
+            </key>
+            <many-to-many entity-name="com.montini.teamsports.model.Player">
+                <column name="player_id" not-null="true" />
+            </many-to-many>
+        </set>
+
+        <set name="reviews" table="playevent_review"  lazy="false" cascade="all">
+            <key column="playevent_id" not-null="true" />
+            <many-to-many column="review_id" class="Review" unique="true"/>
+        </set>
 
     </class>
 </hibernate-mapping>

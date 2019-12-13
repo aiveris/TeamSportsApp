@@ -1,13 +1,14 @@
 package com.montini.teamsports.service;
 
+
 import com.montini.teamsports.dao.PlayerDao;
-import com.montini.teamsports.dao.PlayerDaoImpl;
 import com.montini.teamsports.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -16,11 +17,10 @@ public class PlayerServiceImpl implements PlayerService {
     @Autowired
     private PlayerDao playerDao;
 
-    // public PlayerServiceImpl() { }
-
     @Override
-    public void create(Player player) {
-        playerDao.save(player);
+    public Player create(Player player) {
+        this.playerDao.save(player);
+        return player;
     }
 
     // for backup purpose (don't pay attention): //
@@ -31,13 +31,13 @@ public class PlayerServiceImpl implements PlayerService {
     public void update(Player player) { playerDao.update(player); }
 
     @Override
-    public void delete(int id) {
+    public void delete(Integer id) {
         playerDao.delete(id);
     }
 
     @Override
-    public Player get(int id) { return playerDao.get(id); }
+    public Player get(Integer id) { return playerDao.get(id); }
 
     @Override
-    public Collection<Player> getAll() { return playerDao.getAll(); }
+    public List<Player> getAll() { return playerDao.getAll(); }
 }

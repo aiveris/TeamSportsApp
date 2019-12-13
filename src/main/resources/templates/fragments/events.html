@@ -21,9 +21,9 @@
                                 <thead style="color: rgb(242,199,54);">
                                     <tr>
                                         <th>ID</th>
-                                        <th>Location</th>
                                         <th>Date</th>
                                         <th>Time</th>
+                                        <th>Location</th>
                                         <th>Title</th>
                                         <th>Type</th>
                                         <th>Free slots</th>
@@ -33,19 +33,19 @@
                                 </thead>
                                 <tbody id="eventsList">
                                     <tr th:each="event : ${playevents}">
-<!--                                        <td th:text="${event.getEventDate()}"></td>-->
                                         <td th:text="${event.getId()}"></td>
-                                        <td th:text="${event.getLocation()}"></td>
                                         <td th:text="${event.getEventDate()}"></td>
                                         <td th:text="${event.getEventTime()}"></td>
+                                        <td th:text="${event.getLocation().getName()}"></td>
                                         <td th:text="${event.getTitle()}"></td>
                                         <td th:text="${event.getGameType()}"></td>
                                         <td th:text="${event.getFreeSlots()}"></td>
-                                        <td th:text="${event.getPlayer()}"></td>
-                                        <td th:text="${event.getReview()}"></td>
+<!--                                        <td th:text="${event.getPlayers()}"></td>-->
+                                        <td><div th:each="player : ${event.getPlayers()}" th:text="${player.getUsername()}"></div></td>
+                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="9">
                                             <button class="btn btn-outline-primary btn-block btn-sm" id="btn-add-event"
                                                     type="button" data-toggle="modal" data-target="#addevent">Add event
                                             </button>
@@ -60,8 +60,7 @@
             </div>
         </section>
 
-        <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="addevent"
-             style="background-color: #343a40;">
+        <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="addevent">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header text-uppercase" style="background-color: #343a40;"><h4 class="modal-title">Add new
@@ -114,19 +113,13 @@
                                                                               id="freeSlots-input-field" th:value="*{freeSlots}"/>
                                     </div>
                                 </div>
-                                <!--                                <div class="form-row form-group">-->
-                                <!--                                    <div class="col-sm-4 label-column"><label class="col-form-label"-->
-                                <!--                                                                              for="repeat-password-input-field">Repeat-->
-                                <!--                                        Password </label></div>-->
-                                <!--                                    <div class="col-sm-6 input-column"><input type="password" class="form-control" id="password2" th:value="*{password}"/></div>-->
-                                <!--                                </div>-->
-<!--                                <input type="submit" value="Submit"/>-->
+                                <input type="submit" value="Submit"/>
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer" style="background-color: #343a40;">
                         <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="button">Save</button>
+<!--                        <button class="btn btn-primary" type="button">Save</button>-->
                     </div>
                 </div>
             </div>

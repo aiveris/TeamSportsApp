@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface PlayerDao {
 
-    void save(Player player);
+    Player save(Player player);
     void update(Player player);
-    void delete(int id);
-    Player get(int id);
+    void delete(Integer id);
+    Player get(Integer id);
     List<Player> getAll();
 
 }

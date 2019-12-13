@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,23 +16,27 @@ public class Player implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "player_id", unique = true, nullable = false)
     private Integer id;
-
-    @NotNull
-    private String username, password, email;
-    @NotNull
+    private String username;
+    private String password;
+    private String email;
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
-    @Transient
+
     @JsonIgnore
+    // @OneToMany // MAYBE? - Everything is in xml.
     private Set<Review> reviewSet;
 
+    @JsonIgnore
+    // @OneToMany // MAYBE?
+    private Set<PlayEvent> playEvents = new HashSet<PlayEvent>(0); // <-- what is this Hashset here? No such thing in a (!working) Location
+
+
+    // Constructors
 
     public Player() {}
-
-
 
     public Player(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull Integer rank, Integer userType) {
         this.username = username;
@@ -41,7 +46,9 @@ public class Player implements Serializable {
         this.userType = userType;
     }
 
+
     // Getters and Setters
+
     @JsonGetter("id")
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -66,12 +73,18 @@ public class Player implements Serializable {
     public Integer getUserType() { return userType; }
     public void setUserType(Integer userType) { this.userType = userType; }
 
+    public Set<PlayEvent> getPlayEvents() {
+        return playEvents;
+    }
+    public void setPlayEvents(Set<PlayEvent> playEvents) {
+        this.playEvents = playEvents;
+    }
 
     public Set<Review> getReviewSet() {
         return reviewSet;
     }
-
     public void setReviewSet(Set<Review> reviewSet) {
         this.reviewSet = reviewSet;
     }
+
 }

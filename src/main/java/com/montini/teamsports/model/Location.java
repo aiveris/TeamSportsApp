@@ -69,7 +69,6 @@ public class Location  implements Serializable {
         this.freeCourts = freeCourts;
     }
 
-
     public Set<PlayEvent> getPlayEventSet() {
         return playEventSet;
     }

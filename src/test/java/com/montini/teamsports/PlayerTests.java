@@ -24,6 +24,10 @@ public class PlayerTests {
             player.setEmail("lemontini@gmail.com");
             player.setUserType(0);
             player.setRank(1);
+
+
+
+
             session.save(player);
 
             txn.commit();

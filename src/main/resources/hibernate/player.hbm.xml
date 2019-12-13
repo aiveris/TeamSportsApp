@@ -3,15 +3,15 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.montini.teamsports.model">
-    <class name="Player" table="player">
+<hibernate-mapping>
+    <class name="com.montini.teamsports.model.Player" table="player">
 
         <meta attribute="class-description">
             This class contains the player detail.
         </meta>
 
         <id name="id" type="int" column="player_id">
-            <generator class="native"/>
+            <generator class="identity"/>
         </id>
 
         <property name="username" column="username" type="string"/>
@@ -21,9 +21,20 @@
         <property name="userType" column="user_type" type="int"/>
 
 
-        <set name="reviewSet" inverse="true" cascade="all">
-            <key column="player_id" not-null="true" />
+        <set  name="reviewSet" inverse="true" cascade="all">
+            <key   column="player_id" not-null="true" />
             <one-to-many class="com.montini.teamsports.model.Review"/>
+        </set>
+
+        <set name="playEvents" table="player_playevent"
+             inverse="false" lazy="false" fetch="select" cascade="all" >
+            <key>
+                <column  name="player_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.montini.teamsports.model.PlayEvent">
+                <column name="playevent_id" not-null="true" />
+            </many-to-many>
+
         </set>
 
         <!--<property name="userType">-->
