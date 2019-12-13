@@ -85,11 +85,14 @@ public class FragmentsController {
     }
 
     @RequestMapping(value = "/addPlayer", method = RequestMethod.POST)
-    public String addPlayer(@ModelAttribute("player") Player newPlayer, Model model) {
+    public String addPlayer(@ModelAttribute("player") Player newPlayer) {
+        newPlayer.setUsername(newPlayer.getUsername());
+        newPlayer.setPassword(newPlayer.getPassword());
+        newPlayer.setEmail(newPlayer.getEmail());
         newPlayer.setRank(0);
         newPlayer.setUserType(1);
         playerService.create(newPlayer);
-        return "fragments/locations";
+        return "redirect:/players";
     }
 
     @ModelAttribute(value = "player")

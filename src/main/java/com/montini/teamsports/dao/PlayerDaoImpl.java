@@ -17,7 +17,7 @@ public class PlayerDaoImpl implements PlayerDao {
     private static Logger logger = LoggerFactory.getLogger( PlayerDaoImpl.class );
 
     @Transactional
-    public void save(Player player) {
+    public Player save(Player player) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -32,6 +32,7 @@ public class PlayerDaoImpl implements PlayerDao {
             }
             e.printStackTrace();
         }
+        return player;
     }
 
     @Transactional
@@ -53,7 +54,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Transactional
-    public void delete(int id) {
+    public void delete(Integer id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -77,7 +78,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Transactional
-    public Player get(int id) {
+    public Player get(Integer id) {
         Transaction transaction = null;
         Player player = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

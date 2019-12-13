@@ -21,21 +21,27 @@ public class Player implements Serializable {
     private Integer id;
 
     @NotNull
-    private String username, password, email;
+    private String username;
+    @NotNull
+    private String password;
+    @NotNull
+    private String email;
     @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
 
     @JsonIgnore
+    // @OneToMany // MAYBE?
     private Set<Review> reviewSet;
 
     @JsonIgnore
-    private Set<PlayEvent> playEvents = new HashSet<PlayEvent>(0);
+    // @OneToMany // MAYBE?
+    private Set<PlayEvent> playEvents = new HashSet<PlayEvent>(0); // <-- what is this Hashset here? No such thing in a (!working) Location
 
+
+    // Constructors
 
     public Player() {}
-
-
 
     public Player(@NotNull String username, @NotNull String password, @NotNull String email, @NotNull Integer rank, Integer userType) {
         this.username = username;
@@ -45,7 +51,9 @@ public class Player implements Serializable {
         this.userType = userType;
     }
 
+
     // Getters and Setters
+
     @JsonGetter("id")
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -73,7 +81,6 @@ public class Player implements Serializable {
     public Set<PlayEvent> getPlayEvents() {
         return playEvents;
     }
-
     public void setPlayEvents(Set<PlayEvent> playEvents) {
         this.playEvents = playEvents;
     }
@@ -81,8 +88,8 @@ public class Player implements Serializable {
     public Set<Review> getReviewSet() {
         return reviewSet;
     }
-
     public void setReviewSet(Set<Review> reviewSet) {
         this.reviewSet = reviewSet;
     }
+
 }

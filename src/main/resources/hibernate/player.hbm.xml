@@ -3,8 +3,8 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.montini.teamsports.model">
-    <class name="Player" table="player">
+<hibernate-mapping>
+    <class name="com.montini.teamsports.model.Player" table="player">
 
         <meta attribute="class-description">
             This class contains the player detail.

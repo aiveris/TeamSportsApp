@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class LocationController {
     }
 
     @RequestMapping(value = "locations/{id}", method = RequestMethod.GET)
-    public Location get(@PathVariable Integer id) {
+    public Serializable get(@PathVariable Integer id) {
 
         Location locationOptional = locationService.getLocation(id);
         return locationOptional;
