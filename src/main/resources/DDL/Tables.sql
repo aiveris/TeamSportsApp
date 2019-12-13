@@ -32,9 +32,7 @@ CREATE TABLE playevent
     freeSlots       int,
     unique (playevent_id),
     KEY FK_playevent_location (location_id),
-  CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id),
-	KEY FK_player_playevent (player_id),
-  CONSTRAINT FK_player_playevent FOREIGN KEY (player_id) REFERENCES player (player_id)
+  CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id)
 );
 
 DROP TABLE IF EXISTS review;
