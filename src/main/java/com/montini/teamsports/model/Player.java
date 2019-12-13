@@ -31,7 +31,7 @@ public class Player implements Serializable {
     private Integer userType; // 0 - regular user, 1 - admin
 
     @JsonIgnore
-    // @OneToMany // MAYBE?
+    // @OneToMany // MAYBE? - Everything is in xml.
     private Set<Review> reviewSet;
 
     @JsonIgnore

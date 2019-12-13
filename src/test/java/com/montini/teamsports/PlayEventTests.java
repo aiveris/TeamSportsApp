@@ -3,6 +3,7 @@ package com.montini.teamsports;
 import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.PlayEvent;
 import com.montini.teamsports.model.Player;
+import com.montini.teamsports.model.Review;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,9 +54,23 @@ public class PlayEventTests {
             player2.setUserType(0);
             player2.setRank(1);
 
+            Review review = new Review();
+            review.setTimestamp(new Timestamp(System.currentTimeMillis()));
+            review.setDescription("New message from team-sport user.");
+            review.setPlayer(player);
+
+            Review review2 = new Review();
+            review2.setTimestamp(new Timestamp(System.currentTimeMillis()));
+            review2.setDescription("My text came in here");
+            review2.setPlayer(player2);
+
             Set<Player> players = new HashSet<Player>();
             players.add(player);
             players.add(player2);
+
+            Set<Review> reviews = new HashSet<>();
+            reviews.add(review);
+            reviews.add(review2);
 
             PlayEvent playEvent = new PlayEvent();
             playEvent.setLocation(l1);
@@ -75,10 +91,13 @@ public class PlayEventTests {
 
 
             playEvent.setPlayers(players);
+            playEvent.setReviews(reviews);
 
 
             session.save(player);
             session.save(player2);
+            session.save(review);
+            session.save(review2);
             session.save(l1);
             session.save(playEvent);
             session.save(playEvent2);

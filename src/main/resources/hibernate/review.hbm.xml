@@ -15,5 +15,10 @@
         <many-to-one name="player" class="Player" column="player_id" not-null="true" lazy="false" cascade="all"/>
 
 
+        <join table="playevent_review" inverse="true">
+            <key column="review_id"/>
+            <many-to-one lazy="false" name="playEvent" column="playevent_id" not-null="true"/>
+        </join>
+
     </class>
 </hibernate-mapping>

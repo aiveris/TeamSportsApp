@@ -2,6 +2,7 @@ package com.montini.teamsports.model;
 
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -23,6 +24,9 @@ public class Review {
     private String description;
 
     private Player player;
+
+    @JsonIgnore
+    private PlayEvent playEvent;
 
 
     // Constructors
@@ -70,5 +74,14 @@ public class Review {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+
+    public PlayEvent getPlayEvent() {
+        return playEvent;
+    }
+
+    public void setPlayEvent(PlayEvent playEvent) {
+        this.playEvent = playEvent;
     }
 }

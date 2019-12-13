@@ -36,6 +36,8 @@ public class PlayEvent implements Serializable {
     @JsonIgnore
     private Set<Player> players = new HashSet<Player>(0);
 
+    @JsonIgnore
+    private Set<Review> reviews = new HashSet<Review>(0);
 
     // Constructors
 
@@ -133,6 +135,15 @@ public class PlayEvent implements Serializable {
 
     public void setPlayers(Set<Player> players) {
         this.players = players;
+    }
+
+    @JsonGetter("reviews")
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
     }
 }
 

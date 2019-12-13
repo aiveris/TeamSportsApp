@@ -26,5 +26,10 @@
             </many-to-many>
         </set>
 
+        <set name="reviews" table="playevent_review"  lazy="false" cascade="all">
+            <key column="playevent_id" not-null="true" />
+            <many-to-many column="review_id" class="Review" unique="true"/>
+        </set>
+
     </class>
 </hibernate-mapping>
