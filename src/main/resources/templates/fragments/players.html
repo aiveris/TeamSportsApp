@@ -50,22 +50,22 @@
                     </div>
                     <div class="modal-body" style="background-color: #343a40;">
                         <div class="col" style="margin-left: 0;">
-                            <form th:action="@{/addPlayer}" th:object="${player}" method="post" class="custom-form" style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
+                            <form th:action="@{/addPlayer}" th:object="${player}" method="POST" class="custom-form" style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
                                 <div class="form-row form-group">
                                     <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Player
                                         name </label></div>
-                                    <div class="col-sm-6 input-column"><input type="text" class="form-control" id="name-input-field" th:value="*{username}"/></div>
+                                    <div class="col-sm-6 input-column"><input type="text" class="form-control" id="name-input-field" th:field="*{username}"/></div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Email </label>
                                     </div>
-                                    <div class="col-sm-6 input-column"><input type="email" class="form-control" id="email-input-field" th:value="*{email}"/></div>
+                                    <div class="col-sm-6 input-column"><input type="email" class="form-control" id="email-input-field" th:field="*{email}"/></div>
                                 </div>
                                 <div class="form-row form-group">
                                     <div class="col-sm-4 label-column"><label class="col-form-label"
                                                                               for="password-input-field">Password </label>
                                     </div>
-                                    <div class="col-sm-6 input-column"><input type="password" class="form-control" id="password-input-field" th:value="*{password}"/></div>
+                                    <div class="col-sm-6 input-column"><input type="password" class="form-control" id="password-input-field" th:field="*{password}"/></div>
                                 </div>
 <!--                                <div class="form-row form-group">-->
 <!--                                    <div class="col-sm-4 label-column"><label class="col-form-label"-->

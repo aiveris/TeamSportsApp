@@ -19,14 +19,9 @@ public class Player implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "player_id", unique = true, nullable = false)
     private Integer id;
-
-    @NotNull
     private String username;
-    @NotNull
     private String password;
-    @NotNull
     private String email;
-    @NotNull
     private Integer rank;
     private Integer userType; // 0 - regular user, 1 - admin
 
