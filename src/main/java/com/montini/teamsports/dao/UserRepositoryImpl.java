@@ -9,33 +9,80 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserRepositoryImpl implements UserRepository {
 
     @Override
+    @Transactional
     public Integer add(Object user) {
-        return (Integer) HibernateUtil.getSessionFactory().getCurrentSession().save(user);
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            // start a transaction
+            transaction = session.beginTransaction();
+            session.save(user);
+
+        }catch (Exception e) {
+
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+        return ((User)user).getId();
     }
 
     @Override
+    @Transactional
     public void delete(Object o) {
-
     }
 
     @Override
+    @Transactional
     public Object update(Object o) {
-        return null;
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+        } catch (Exception e) {
+
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+
+        return o;
     }
 
     @Override
+    @Transactional
     public User findOne(Integer id) {
-        return HibernateUtil.getSessionFactory().getCurrentSession().get(User.class, id);
+
+        Transaction transaction = null;
+        User userNow = new User();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            userNow = session.get(User.class, id);
+
+        } catch (Exception e) {
+
+        if (transaction != null) {
+            transaction.rollback();
+        }
+            e.printStackTrace();
+        }
+        return userNow;
     }
 
     @Override
+    @Transactional
     public List<User> findAll() {
         Transaction transaction = null;
         List<User> users = null;
@@ -44,6 +91,8 @@ public class UserRepositoryImpl implements UserRepository {
             transaction = session.beginTransaction();
             users = session.createQuery("FROM User", User.class).list();
             transaction.commit();
+
+            
         }catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -55,22 +104,24 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    @Transactional
     public User getUserByUsername(String username) {
-        Transaction transaction;
+        Transaction transaction = null;
         Query<User> query = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
 
-        query = session.createQuery("FROM User u where u.username=:username", User.class);
-        query.setParameter("username", username);
+        query = session.createQuery("FROM User WHERE username=:bind_username", User.class);
+        query.setParameter("bind_username", username);
 
         transaction.commit();
 
-
         }catch (Exception e) {
-
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
 
@@ -78,6 +129,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    @Transactional
     public List<User> getAllAdmins() {
         Transaction transaction = null;
         NativeQuery<User> query = null;
@@ -85,11 +137,14 @@ public class UserRepositoryImpl implements UserRepository {
             // start a transaction
             transaction = session.beginTransaction();
 
-            query = session.createNativeQuery("SELECT * FROM user u where id in (select user_id FROM user_authority where authority_id=(select id FROM authority where name=:role))");
+            query = session.createNativeQuery(
+              "SELECT * FROM user u, user_authority ua, authority a WHERE u.id=ua.user_id AND a.id = ua.authority_id AND a.name=:role");
+
             query.setParameter("role", "ROLE_ADMIN");
             query.addEntity(User.class);
 
             transaction.commit();
+
         }catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

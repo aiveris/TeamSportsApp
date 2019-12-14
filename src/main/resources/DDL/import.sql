@@ -6,6 +6,6 @@ INSERT INTO `user_authority`(`authority_id`, `user_id`) VALUES (1, 1);
 
 INSERT INTO `user_authority`(`authority_id`, `user_id`) VALUES (2, 2);
 
-INSERT INTO `user` (`id`, `username`, `password`, `dateCreated`) VALUES (1,'ironman','$2a$10$jXlure/BaO7K9WSQ8AMiOu3Ih3Am3kmmnVkWWHZEcQryZ8QPO3FgC','2015-11-15 22:14:54');
+INSERT INTO `user` (`id`, `username`, `password`, `dateCreated`) VALUES (1,'ironman','iron','2015-11-15');
 
-INSERT INTO `user` (`id`, `username`, `password`, `dateCreated`) VALUES (2,'rabi','$2a$10$0tFJKcOV/Io6I3vWs9/Tju8OySoyMTpGAyO0zaAO','2019-11-25 15:23:45');
+INSERT INTO `user` (`id`, `username`, `password`, `dateCreated`) VALUES (2,'rabi','rabi','2019-11-25');
