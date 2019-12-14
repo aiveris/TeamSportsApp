@@ -1,19 +1,27 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.HibernateUtil;
+import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
+    private static final Logger log = LoggerFactory.getLogger( UserRepositoryImpl.class );
 
     @Override
     @Transactional
@@ -49,6 +57,9 @@ public class UserRepositoryImpl implements UserRepository {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
+            transaction = session.beginTransaction();
+            transaction.commit();
+
         } catch (Exception e) {
 
             if (transaction != null) {
@@ -69,7 +80,9 @@ public class UserRepositoryImpl implements UserRepository {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
+            transaction = session.beginTransaction();
             userNow = session.get(User.class, id);
+            transaction.commit();
 
         } catch (Exception e) {
 
@@ -85,14 +98,14 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public List<User> findAll() {
         Transaction transaction = null;
-        List<User> users = null;
+        List<User> users = new ArrayList<>();
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
             transaction = session.beginTransaction();
-            users = session.createQuery("FROM User", User.class).list();
+            session.createQuery("FROM User", User.class);
             transaction.commit();
 
-            
         }catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -107,7 +120,11 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public User getUserByUsername(String username) {
         Transaction transaction = null;
-        Query<User> query = null;
+        TypedQuery<User> query = null;
+
+        log.info( "HBN:USER " + username );
+
+        Optional<User> optionalUser = Optional.of( new User() );
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -116,16 +133,24 @@ public class UserRepositoryImpl implements UserRepository {
         query = session.createQuery("FROM User WHERE username=:bind_username", User.class);
         query.setParameter("bind_username", username);
 
+            List<User> results = query.getResultList();
+
+            Iterator<User> ii = results.iterator();
+            while (ii.hasNext()) {
+                optionalUser = Optional.of( ii.next() );
+                break;
+            }
+
         transaction.commit();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
 
-        return query.uniqueResult();
+        return optionalUser.get();
     }
 
     @Override
