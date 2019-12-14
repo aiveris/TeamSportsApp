@@ -50,7 +50,7 @@
                     </div>
                     <div class="modal-body" style="background-color: #343a40;">
                         <div class="col" style="margin-left: 0;">
-                            <form th:action="@{/addPlayer}" th:object="${player}" method="POST" class="custom-form" style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
+                            <form id="form players" th:action="@{/addPlayer}" th:object="${player}" method="POST" class="custom-form" style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
                                 <div class="form-row form-group">
                                     <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Player
                                         name </label></div>
@@ -73,11 +73,12 @@
 <!--                                        Password </label></div>-->
 <!--                                    <div class="col-sm-6 input-column"><input type="password" class="form-control" id="password2" th:value="*{password}"/></div>-->
 <!--                                </div>-->
-                                <input type="submit" value="Submit" />
+<!--                                <input type="submit" value="Submit" />-->
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer" style="background-color: #343a40;">
+                        <button class="btn btn-primary" type="submit" form="form players">Submit</button>
                         <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
 <!--                        <button class="btn btn-primary" type="button">Save</button>-->
                     </div>

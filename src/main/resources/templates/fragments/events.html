@@ -76,7 +76,7 @@
                     </div>
                     <div class="modal-body" style="background-color: #343a40;">
                         <div class="col" style="margin-left: 0;">
-                            <form th:action="@{/addPlayEvent}" th:object="${playEvent}" method="post" class="custom-form"
+                            <form id="form events" th:action="@{/addPlayEvent}" th:object="${playEvent}" method="post" class="custom-form"
                                   style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
                                 <div class="form-row form-group">
                                     <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Title</label></div>
@@ -119,11 +119,12 @@
                                                                               id="freeSlots-input-field" th:value="*{freeSlots}"/>
                                     </div>
                                 </div>
-                                <input type="submit" value="Submit"/>
+<!--                                <input type="submit" value="Submit"/>-->
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer" style="background-color: #343a40;">
+                        <button class="btn btn-primary" type="submit" form="form events">Submit</button>
                         <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
 <!--                        <button class="btn btn-primary" type="button">Save</button>-->
                     </div>

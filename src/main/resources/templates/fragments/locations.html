@@ -57,7 +57,7 @@
                     </div>
                     <div class="modal-body" style="background-color: #343a40;">
                         <div class="col" style="margin-left: 0;">
-                            <form th:action="@{/addLocation}" th:object="${locationForm}" method="POST"
+                            <form id="form location" th:action="@{/addLocation}" th:object="${locationForm}" method="POST"
                                   class="custom-form" style="background-color: rgb(52,58,64); color: rgb(255,255,255);">
                                 <div class="form-row form-group">
                                     <div class="col-sm-4 label-column"><label class="col-form-label"
@@ -85,11 +85,14 @@
                                                                               th:field="*{maxCourts}"/></div>
                                 </div>
 
-                                <input type="submit" value="Submit"/>
+<!--                                <input type="submit" id="submit-form" class="hidden" />-->
+<!--                                <input type="submit" value="Submit"/>-->
                             </form>
+
                         </div>
                     </div>
                     <div class="modal-footer" style="background-color: #343a40;">
+                        <button class="btn btn-primary" type="submit" form="form location">Submit</button>
                         <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
                         <!--                        <button class="btn btn-primary" type="button">Save</button>-->
                     </div>
