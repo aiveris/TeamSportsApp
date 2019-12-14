@@ -84,12 +84,6 @@ public class FragmentsController {
         return "redirect:/locations";
     }
 
-    @RequestMapping(value = "/deleteLocation", method = RequestMethod.POST)
-    public String removeLocation(@ModelAttribute("locationId") Integer id) {
-        locationService.deleteLocation(id);
-        return "redirect:/locations";
-    }
-
     @ModelAttribute(value = "locationForm")
     public Location getLocation() {
         return new Location();
