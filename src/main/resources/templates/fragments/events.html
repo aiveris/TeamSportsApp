@@ -41,10 +41,39 @@
                                         <td th:text="${event.getGameType()}"></td>
                                         <td th:text="${event.getFreeSlots()}"></td>
 <!--                                        <td th:text="${event.getPlayers()}"></td>-->
-                                        <td><div th:each="player : ${event.getPlayers()}" th:text="${player.getUsername()}"></div></td>
-<!--                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"></td>-->
+                                        <td>
+
+                                            <div th:each="playerIn : ${event.getPlayers()}">
+                                                <a th:type="text" th:text="${playerIn.getUsername()}" data-toggle="modal" data-target="#showStats" href="" style="color: white">
+                                                </a>
+                                                <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="showStats">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header text-uppercase" style="background-color: #343a40;"><h4 class="modal-title">Player Stats</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                                        aria-hidden="true">×</span></button>
+                                                            </div>
+                                                            <div class="modal-body" style="background-color: #343a40;">
+                                                                <div class="col" style="margin-left: 0;">
+                                                                    <p th:text="'Name: '+${playerIn.getUsername()}"></p>
+                                                                    <p th:text="'Email: '+${playerIn.getEmail()}"></p>
+                                                                    <p th:text="'Rank: '+${playerIn.getRank()}"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer" style="background-color: #343a40;">
+                                                                <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+
+<!--                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"> </td>-->
+
                                         <td th:with="eventId=${event.getId()}">
-                                            <a th:href="@{'/reviews' + ${eventId}}">
+                                            <a th:href="@{'/reviews' + ${eventId}}" style="color: white">
                                                 Read
                                             </a>
                                         </td>
@@ -130,6 +159,7 @@
                 </div>
             </div>
         </div>
+
 
         <th:block th:replace="fragments/footer"></th:block>
 
