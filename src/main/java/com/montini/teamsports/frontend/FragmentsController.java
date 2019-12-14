@@ -11,13 +11,10 @@ import com.montini.teamsports.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class FragmentsController {
@@ -103,22 +100,43 @@ public class FragmentsController {
 
     ///////////////////////////////////////////////////////////////////////////////
 
-    @RequestMapping("/reviews")
-    public String reviewsDisplay(Model model){
-        List<Review> reviewsList= reviewService.getAll();
-        model.addAttribute("reviews", reviewsList);
+    @RequestMapping("/reviews{id}")
+    public String reviewsDisplay(@PathVariable Integer id, Model model) {
+        PlayEvent playEvent = playEventService.getPlayEvent(id);
+        Integer eventId = playEvent.getId();
+        String playEventTitle = playEvent.getTitle();
+        Set<Review> reviewsSet = playEvent.getReviews();
+        model.addAttribute("reviews", reviewsSet);
+        model.addAttribute("eventId", eventId);
+        model.addAttribute("eventName", playEventTitle);
         return "fragments/reviews";
     }
 
-    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
-    public String addReview(@ModelAttribute("reviewForm") Review newReview) {
+    @RequestMapping(value = "/addReview{id}", method = RequestMethod.POST)
+    public String addReview(@PathVariable Integer id, @ModelAttribute("reviewForm") Review newReview) {
+
+        PlayEvent playEvent = playEventService.getPlayEvent(id);
+
+        Player player = new Player("Marius", "kokokok", "jojo@jojo.com", 0, 10);
+
         newReview.setTimestamp(new Timestamp(System.currentTimeMillis()));
         newReview.setDescription(newReview.getDescription());
+        newReview.setPlayer(player);
+
         reviewService.create(newReview);
-        return "redirect:/reviews";
+        playerService.create(player);
+
+        Set<Player> players = new HashSet<Player>();
+        players.add(player);
+        playEvent.setPlayers(players);
+
+        Set<Review> reviews = new HashSet<>();
+        reviews.add(newReview);
+        playEvent.setReviews(reviews);
+
+        return "redirect:/reviews"+id;
     }
 
     @ModelAttribute(value = "reviewForm")
     public Review getReview() {return new Review();}
-
 }

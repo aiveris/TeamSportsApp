@@ -28,7 +28,7 @@
                                         <th>Type</th>
                                         <th>Free slots</th>
                                         <th>Attending</th>
-                                        <th>Review</th>
+                                        <th>Reviews</th>
                                     </tr>
                                 </thead>
                                 <tbody id="eventsList">
@@ -42,7 +42,13 @@
                                         <td th:text="${event.getFreeSlots()}"></td>
 <!--                                        <td th:text="${event.getPlayers()}"></td>-->
                                         <td><div th:each="player : ${event.getPlayers()}" th:text="${player.getUsername()}"></div></td>
-                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"></td>
+<!--                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"></td>-->
+                                        <td th:with="eventId=${event.getId()}">
+                                            <a th:href="@{'/reviews' + ${eventId}}">
+                                                Read
+                                            </a>
+                                        </td>
+
                                     </tr>
                                     <tr>
                                         <td colspan="9">
