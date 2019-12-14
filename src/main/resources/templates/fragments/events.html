@@ -74,7 +74,7 @@
 
                                         <td th:with="eventId=${event.getId()}">
                                             <a th:href="@{'/reviews' + ${eventId}}" style="color: white">
-                                                Read
+                                                <span th:text="${(event.getReviews().size() == 0)?'Write':'Read('+event.getReviews().size()+')'}"></span>
                                             </a>
                                         </td>
 
