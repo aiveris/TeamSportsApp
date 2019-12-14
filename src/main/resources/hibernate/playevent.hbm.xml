@@ -8,11 +8,11 @@
         <meta attribute = "class-description">This class contains the play events detail.</meta>
         <id name = "id" type = "int" column = "playevent_id"><generator class="identity"/></id>
         <many-to-one name="location" class="Location" column="location_id" not-null="true" lazy="false" cascade="all"/>
-        <property name = "eventDate" column = "eventDate" type = "java.sql.Date"/>
-        <property name = "eventTime" column = "eventTime" type = "java.sql.Time"/>
+        <property name = "eventDate" column = "event_Date" type = "java.sql.Date"/>
+        <property name = "eventTime" column = "event_Time" type = "java.sql.Time"/>
         <property name = "title" column = "title" type = "string"/>
-        <property name = "gameType" column = "gameType" type = "int"/>
-        <property name = "freeSlots" column = "freeSlots" type = "int"/>
+        <property name = "gameType" column = "game_Type" type = "int"/>
+        <property name = "freeSlots" column = "free_Slots" type = "int"/>
 
 
 

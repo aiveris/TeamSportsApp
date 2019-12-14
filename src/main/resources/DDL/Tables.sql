@@ -25,11 +25,11 @@ CREATE TABLE playevent
 (
     playevent_id    int primary key not null auto_increment,
 	location_id     int NOT NULL,
-    eventDate       date,
-    eventTime       time,
+    event_Date       date,
+    event_Time       time,
     title           varchar(25),
-    gameType        int,
-    freeSlots       int,
+    game_Type        int,
+    free_Slots       int,
     unique (playevent_id),
     KEY FK_playevent_location (location_id),
   CONSTRAINT FK_playevent_location FOREIGN KEY (location_id) REFERENCES location (location_id)
@@ -69,3 +69,26 @@ CREATE TABLE playevent_review
     constraint fk_review foreign key (review_id) references review (review_id)
 
 );
+
+DROP TABLE IF EXISTS user;
+CREATE TABLE user
+(
+  id primary key int not null,
+  username varchar(16),
+  password varchar(20),
+  dateCreated date
+);
+
+DROP TABLE IF EXISTS authority;
+CREATE TABLE authority
+(
+    name enum('ROLE_ADMIN', 'ROLE_USER'),
+    id primary key int not null
+)
+
+DROP TABLE IF EXISTS user_authority;
+CREATE TABLE user_authority
+(
+    user_id primary key int not null,
+    authority_id primary key int not null
+)

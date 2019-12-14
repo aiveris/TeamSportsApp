@@ -30,9 +30,7 @@ public class PlayEventDaoImpl implements PlayEventDao {
             // commit transaction
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
+
             e.printStackTrace();
         }
         return playEvent;
