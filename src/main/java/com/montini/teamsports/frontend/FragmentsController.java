@@ -61,8 +61,7 @@ public class FragmentsController {
 
 
     @ModelAttribute(value = "playEventForm")
-    public PlayEvent getPlayEvent()
-    {
+    public PlayEvent getPlayEvent() {
         return new PlayEvent();
     }
 
@@ -85,13 +84,21 @@ public class FragmentsController {
         return "redirect:/locations";
     }
 
+    @RequestMapping(value = "/deleteLocation", method = RequestMethod.POST)
+    public String removeLocation(@ModelAttribute("locationId") Integer id) {
+        locationService.deleteLocation(id);
+        return "redirect:/locations";
+    }
+
     @ModelAttribute(value = "locationForm")
-    public Location getLocation() {return new Location();}
+    public Location getLocation() {
+        return new Location();
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/players")
-    public String playersDisplay(Model model){
+    public String playersDisplay(Model model) {
         Collection<Player> playerSet = playerService.getAll();
         model.addAttribute("players", playerSet);
         return "fragments/players";
@@ -109,8 +116,7 @@ public class FragmentsController {
     }
 
     @ModelAttribute(value = "player")
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         return new Player();
     }
 
@@ -150,9 +156,11 @@ public class FragmentsController {
         reviews.add(newReview);
         playEvent.setReviews(reviews);
 
-        return "redirect:/reviews"+id;
+        return "redirect:/reviews" + id;
     }
 
     @ModelAttribute(value = "reviewForm")
-    public Review getReview() {return new Review();}
+    public Review getReview() {
+        return new Review();
+    }
 }
