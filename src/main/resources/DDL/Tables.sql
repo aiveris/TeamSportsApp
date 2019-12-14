@@ -73,7 +73,7 @@ CREATE TABLE playevent_review
 DROP TABLE IF EXISTS user;
 CREATE TABLE user
 (
-  id primary key int not null,
+  id int primary key not null,
   username varchar(16),
   password varchar(20),
   dateCreated date
@@ -83,12 +83,13 @@ DROP TABLE IF EXISTS authority;
 CREATE TABLE authority
 (
     name enum('ROLE_ADMIN', 'ROLE_USER'),
-    id primary key int not null
-)
+    id int primary key not null
+);
 
 DROP TABLE IF EXISTS user_authority;
 CREATE TABLE user_authority
 (
-    user_id primary key int not null,
-    authority_id primary key int not null
-)
+    user_id int not null,
+    authority_id int not null,
+    primary key (user_id, authority_id)
+);
