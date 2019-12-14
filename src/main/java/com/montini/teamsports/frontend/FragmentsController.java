@@ -33,18 +33,34 @@ public class FragmentsController {
 
     @RequestMapping("/")
     public String rootDisplay() {
-        return "fragments/events";
+        return "redirect:/events";
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/events")
     public String eventsDisplay(Model model) {
         Collection<PlayEvent> playEventCollection = playEventService.getAllPlayEvent();
+        Collection<Location> locationCollection = locationService.getAllLocation();
         model.addAttribute("playevents", playEventCollection);
+        model.addAttribute("locations", locationCollection);
         return "fragments/events";
     }
 
+    @RequestMapping(value = "/addPlayEvent", method = RequestMethod.POST)
+    public String addPlayEvent(@ModelAttribute("playEventForm") PlayEvent newPlayEvent) {
+        newPlayEvent.setLocation(newPlayEvent.getLocation());
+        newPlayEvent.setEventDate(newPlayEvent.getEventDate());
+        newPlayEvent.setEventTime(newPlayEvent.getEventTime());
+        newPlayEvent.setTitle(newPlayEvent.getTitle());
+        newPlayEvent.setGameType(newPlayEvent.getGameType());
+        newPlayEvent.setFreeSlots(newPlayEvent.getFreeSlots());
+        playEventService.savePlayEvent(newPlayEvent);
+        return "redirect:/locations";
+    }
 
-    @ModelAttribute(value = "playEvent")
+
+    @ModelAttribute(value = "playEventForm")
     public PlayEvent getPlayEvent()
     {
         return new PlayEvent();
