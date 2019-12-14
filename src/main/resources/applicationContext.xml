@@ -38,8 +38,11 @@
                 <value>com.montini.teamsports.model.PlayEvent</value>
                 <value>com.montini.teamsports.model.Player</value>
                 <value>com.montini.teamsports.model.Review</value>
+                <value>com.montini.teamsports.model.User</value>
+                <value>com.montini.teamsports.model.Authority</value>
             </list>
         </property>
+
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -53,7 +56,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/teamsports"/>
-        <property name="username" value="root"/>
+        <property name="username" value="yolo"/>
     </bean>
 
     <bean name="playerDao"

@@ -1,9 +1,11 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.model.User;
-import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+import java.util.List;
+
+public interface UserRepository extends CrudRepository {
 
     User getUserByUsername(String username);
+    List<User> getAllAdmins();
 }
