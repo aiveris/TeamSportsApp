@@ -32,15 +32,18 @@ public class UserRepositoryImpl implements UserRepository {
             transaction = session.beginTransaction();
 
             log.info( "HBN:SAVE " + user.toString() );
-            session.save(user);
+            session.saveOrUpdate(user);
 
             transaction.commit();
+
         }catch (Exception e) {
+
+            e.printStackTrace();
 
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
+
         }
 
         return user.getId();

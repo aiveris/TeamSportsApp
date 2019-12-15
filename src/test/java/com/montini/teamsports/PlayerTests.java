@@ -18,6 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,22 +39,28 @@ public class PlayerTests {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Test
-    public void test() {
+    @Transactional
+    public void test() throws Exception {
 
-        try {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             final User user = new User();
             user.setUsername("Ignas");
             user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
 
-            log.info( "HBN:USER LOG " + user.toString() );
+            // start a transaction
+            transaction = session.beginTransaction();
 
-            userRepository.add(user);
+                log.info( "HBN:TEST " + user.toString() );
+                userRepository.add(user);
+
+            transaction.commit();
 
         } catch (Exception e) {
 
             e.printStackTrace();
+            throw e;
         }
     }
-
 }
