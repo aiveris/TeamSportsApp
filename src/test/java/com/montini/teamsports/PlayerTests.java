@@ -1,14 +1,31 @@
 package com.montini.teamsports;
 
+import com.montini.teamsports.dao.UserRepository;
+import com.montini.teamsports.dao.UserRepositoryImpl;
 import com.montini.teamsports.model.Player;
+import com.montini.teamsports.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@ComponentScan("com.montini.teamsports.dao")
 public class PlayerTests {
     public static final Logger log = LoggerFactory.getLogger(Player.class);
+
+    @Autowired
+    UserRepository userRepository = new UserRepositoryImpl();
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Test
     public void test() {
@@ -18,17 +35,14 @@ public class PlayerTests {
             session = HibernateUtil.getSessionFactory().openSession();
             txn = session.beginTransaction();
 
-            Player player = new Player();
-            player.setUsername("montini");
-            player.setPassword("energy");
-            player.setEmail("lemontini@gmail.com");
-            player.setUserType(0);
-            player.setRank(1);
+            User user = new User();
+            user.setUsername("Ignas");
+            user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
+            userRepository.add(user);
 
 
 
-
-            session.save(player);
+            session.save(user);
 
             txn.commit();
         } catch (RuntimeException e) {

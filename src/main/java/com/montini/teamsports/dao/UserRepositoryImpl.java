@@ -1,12 +1,10 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.HibernateUtil;
-import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
-import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -34,6 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
             transaction = session.beginTransaction();
             session.save(user);
 
+            transaction.commit();
         }catch (Exception e) {
 
             if (transaction != null) {
