@@ -28,7 +28,7 @@
                                         <th>Type</th>
                                         <th>Free slots</th>
                                         <th>Attending</th>
-                                        <th>Review</th>
+                                        <th>Reviews</th>
                                     </tr>
                                 </thead>
                                 <tbody id="eventsList">
@@ -41,8 +41,43 @@
                                         <td th:text="${event.getGameType()}"></td>
                                         <td th:text="${event.getFreeSlots()}"></td>
 <!--                                        <td th:text="${event.getPlayers()}"></td>-->
-                                        <td><div th:each="player : ${event.getPlayers()}" th:text="${player.getUsername()}"></div></td>
-                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"></td>
+                                        <td>
+
+                                            <div th:each="playerIn : ${event.getPlayers()}">
+                                                <a th:type="text" th:text="${playerIn.getUsername()}" data-toggle="modal" data-target="#showStats" href="" style="color: white">
+                                                </a>
+                                                <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="showStats">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header text-uppercase" style="background-color: #343a40;"><h4 class="modal-title">Player Stats</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                                        aria-hidden="true">×</span></button>
+                                                            </div>
+                                                            <div class="modal-body" style="background-color: #343a40;">
+                                                                <div class="col" style="margin-left: 0;">
+                                                                    <p th:text="'Name: '+${playerIn.getUsername()}"></p>
+                                                                    <p th:text="'Email: '+${playerIn.getEmail()}"></p>
+                                                                    <p th:text="'Rank: '+${playerIn.getRank()}"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer" style="background-color: #343a40;">
+                                                                <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </td>
+
+<!--                                        <td th:text="${(event.getReview()==null)?'N/A':event.getReview()}"> </td>-->
+
+                                        <td th:with="eventId=${event.getId()}">
+                                            <a th:href="@{'/reviews' + ${eventId}}" style="color: white">
+                                                <span th:text="${(event.getReviews().size() == 0)?'Write':'Read('+event.getReviews().size()+')'}"></span>
+                                            </a>
+                                        </td>
+
                                     </tr>
                                     <tr>
                                         <td colspan="9">
@@ -62,64 +97,83 @@
 
         <div role="dialog" tabindex="-1" class="modal fade text-primary show" id="addevent">
             <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-uppercase" style="background-color: #343a40;"><h4 class="modal-title">Add new
+                <div class="modal-content darkMode">
+                    <div class="modal-header text-uppercase"><h4 class="modal-title">
+                        Add new
                         event</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
-                    <div class="modal-body" style="background-color: #343a40;">
+                    <div class="modal-body">
                         <div class="col" style="margin-left: 0;">
-                            <form th:action="@{/addPlayEvent}" th:object="${playEvent}" method="post" class="custom-form"
+                            <form id="form events" th:action="@{/addPlayEvent}" th:object="${playEventForm}" method="POST"
+                                  class="custom-form"
                                   style="background-color: rgb(52,58,64);color: rgb(255,255,255);">
                                 <div class="form-row form-group">
-                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Title</label></div>
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="title-input-field">Title</label>
+                                    </div>
                                     <div class="col-sm-6 input-column"><input type="text" class="form-control"
-                                                                              id="name-input-field" th:value="*{title}"/>
+                                                                              id="title-input-field"
+                                                                              th:field="*{title}"/>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
-                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="location-input-field">Location</label>
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="location-input-field">Location</label>
                                     </div>
-                                    <div class="col-sm-6 input-column"><input type="text" class="form-control"
-                                                                              id="location-input-field" th:value="*{location}"/>
-                                    </div>
-                                </div>
-                                <div class="form-row form-group">
-                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="eventDate-input-field">Date</label>
-                                    </div>
-                                    <div class="col-sm-6 input-column"><input type="text" class="form-control"
-                                                                              id="eventDate-input-field" th:value="*{eventDate}"/>
+                                    <div class="col-sm-6 input-column">
+                                        <select class="form-control" th:field="*{location}" id="location-input-field"
+                                                style="padding: 0px 8px">
+                                            <option th:each="location : ${locations}" th:value="${location}"
+                                                    th:text="${location.getName()}"></option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
-                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="eventTime-input-field">Time</label>
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="eventDate-input-field">Date</label>
                                     </div>
                                     <div class="col-sm-6 input-column"><input type="text" class="form-control"
-                                                                              id="eventTime-input-field" th:value="*{eventTime}"/>
+                                                                              id="eventDate-input-field"
+                                                                              th:field="*{eventDate}"/>
                                     </div>
                                 </div>
                                 <div class="form-row form-group">
-                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="gameType-input-field">Type</label>
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="eventTime-input-field">Time</label>
+                                    </div>
+                                    <div class="col-sm-6 input-column"><input type="text" class="form-control"
+                                                                              id="eventTime-input-field"
+                                                                              th:field="*{eventTime}"/>
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="gameType-input-field">Game
+                                        type</label>
+                                    </div>
+                                    <div class="col-sm-6 input-column">
+                                        <input type="number" class="form-control" id="gameType-input-field"
+                                               th:field="*{gameType}"/>
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col-sm-4 label-column"><label class="col-form-label"
+                                                                              for="freeSlots-input-field">Free
+                                        Slots</label>
                                     </div>
                                     <div class="col-sm-6 input-column"><input type="number" class="form-control"
-                                                                              id="gameType-input-field" th:value="*{gameType}"/>
+                                                                              id="freeSlots-input-field"
+                                                                              th:fielo="*{freeSlots}"/>
                                     </div>
                                 </div>
-                                <div class="form-row form-group">
-                                    <div class="col-sm-4 label-column"><label class="col-form-label" for="freeSlots-input-field">Free Slots</label>
-                                    </div>
-                                    <div class="col-sm-6 input-column"><input type="number" class="form-control"
-                                                                              id="freeSlots-input-field" th:value="*{freeSlots}"/>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Submit"/>
                             </form>
                         </div>
                     </div>
-                    <div class="modal-footer" style="background-color: #343a40;">
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit" form="form events">Submit</button>
                         <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-<!--                        <button class="btn btn-primary" type="button">Save</button>-->
                     </div>
                 </div>
             </div>
