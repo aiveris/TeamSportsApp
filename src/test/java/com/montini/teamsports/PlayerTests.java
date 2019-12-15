@@ -2,6 +2,8 @@ package com.montini.teamsports;
 
 import com.montini.teamsports.dao.UserRepository;
 import com.montini.teamsports.dao.UserRepositoryImpl;
+import com.montini.teamsports.model.Authority;
+import com.montini.teamsports.model.AuthorityType;
 import com.montini.teamsports.model.Player;
 import com.montini.teamsports.model.User;
 import org.hibernate.Session;
@@ -16,6 +18,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -38,8 +43,12 @@ public class PlayerTests {
             txn = session.beginTransaction();
 
             User user = new User();
+            Set<Authority> authorities = new HashSet<>();
+            Authority authority = new Authority(AuthorityType.valueOf("ROLE_ADMIN"));
+            authorities.add(authority);
             user.setId(5);
             user.setUsername("Ignas");
+            user.setAuthorities(authorities);
             user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
             userRepository.add(user);
 
