@@ -75,8 +75,8 @@ CREATE TABLE user
 (
   id int primary key not null AUTO_INCREMENT,
   username varchar(16),
-  password varchar(20),
-  dateCreated date
+  password varchar(200),
+  date_created date
 );
 
 DROP TABLE IF EXISTS authority;
