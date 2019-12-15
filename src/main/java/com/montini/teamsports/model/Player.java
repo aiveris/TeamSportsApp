@@ -26,11 +26,11 @@ public class Player implements Serializable {
     private Integer userType; // 0 - regular user, 1 - admin
 
     @JsonIgnore
-    // @OneToMany // MAYBE? - Everything is in xml.
+    @OneToMany
     private Set<Review> reviewSet;
 
     @JsonIgnore
-    // @OneToMany // MAYBE?
+    @ManyToMany
     private Set<PlayEvent> playEvents = new HashSet<PlayEvent>(0); // <-- what is this Hashset here? No such thing in a (!working) Location
 
 

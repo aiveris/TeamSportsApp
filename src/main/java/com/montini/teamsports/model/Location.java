@@ -25,6 +25,7 @@ public class Location  implements Serializable {
     private int maxCourts;
     private int freeCourts;
     @JsonIgnore
+    @OneToMany
     private Set<PlayEvent> playEventSet;
 
 

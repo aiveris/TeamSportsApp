@@ -1,44 +1,69 @@
 package com.montini.teamsports;
 
+import com.montini.teamsports.dao.UserRepository;
 import com.montini.teamsports.model.Player;
+import com.montini.teamsports.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@WebAppConfiguration("classpath:resources")
+@ComponentScan("com.montini.teamsports")
 
 public class PlayerTests {
+
     public static final Logger log = LoggerFactory.getLogger(Player.class);
 
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Test
-    public void test() {
-        Session session = null;
-        Transaction txn = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            txn = session.beginTransaction();
+    @Transactional
+    public void test() throws Exception {
 
-            Player player = new Player();
-            player.setUsername("montini");
-            player.setPassword("energy");
-            player.setEmail("lemontini@gmail.com");
-            player.setUserType(0);
-            player.setRank(1);
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            SimpleDateFormat dateformat3 = new SimpleDateFormat("dd/MM/yyyy");
+                Date date1 = dateformat3.parse("17/07/1989");
+
+            final User user = new User();
+            user.setUsername("Ignas");
+            user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
+            user.setDateCreated(date1);
+
+            // start a transaction
+            transaction = session.beginTransaction();
+
+                log.info( "HBN:TEST " + user.toString() );
+                session.save(user);
 
 
+            transaction.commit();
 
+        } catch (Exception e) {
 
-            session.save(player);
-
-            txn.commit();
-        } catch (RuntimeException e) {
-            if (txn != null && txn.isActive()) txn.rollback();
+            e.printStackTrace();
             throw e;
-        } finally {
-            if (session != null) {
-                session.close();
-            }
         }
     }
-
 }

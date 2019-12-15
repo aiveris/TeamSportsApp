@@ -23,9 +23,11 @@ public class Review {
     @Column(name = "description")
     private String description;
 
+    @ManyToOne
     private Player player;
 
     @JsonIgnore
+    @ManyToOne
     private PlayEvent playEvent;
 
 

@@ -21,17 +21,12 @@ public class User implements Serializable {
 
     @NotEmpty
     private String password;
-
     private Date dateCreated;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
     @JoinTable(name = "user_authority",
-
             joinColumns = { @JoinColumn(name = "user_id") },
-
             inverseJoinColumns = { @JoinColumn(name = "authority_id") })
-
     private Set<Authority> authorities = new HashSet<>();
 
     public User() {
@@ -78,6 +73,11 @@ public class User implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    @Override
+    public String toString() {
+        return this.getId() + " "  + this.getUsername() + " " +  this.getPassword();
     }
 }
 

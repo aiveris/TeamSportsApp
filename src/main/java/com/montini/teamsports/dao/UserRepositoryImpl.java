@@ -1,12 +1,10 @@
 package com.montini.teamsports.dao;
 
 import com.montini.teamsports.HibernateUtil;
-import com.montini.teamsports.model.Location;
 import com.montini.teamsports.model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
-import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -25,34 +23,59 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     @Transactional
-    public Integer add(Object user) {
+    public Integer add(User user) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             // start a transaction
             transaction = session.beginTransaction();
-            session.save(user);
+
+            log.info( "HBN:SAVE " + user.toString() );
+            session.saveOrUpdate(user);
+
+            transaction.commit();
 
         }catch (Exception e) {
+
+            e.printStackTrace();
+
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+        }
+
+        return user.getId();
+    }
+
+    @Override
+    public void delete(Integer integer) {
+
+    }
+
+    @Override
+    @Transactional
+    public void delete(User o) {
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+            transaction.commit();
+
+        } catch (Exception e) {
 
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
-
-        return ((User)user).getId();
     }
 
     @Override
     @Transactional
-    public void delete(Object o) {
-    }
-
-    @Override
-    @Transactional
-    public Object update(Object o) {
+    public User update(User o) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

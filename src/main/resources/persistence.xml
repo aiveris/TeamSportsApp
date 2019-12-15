@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="teamsports">
+        <class>com.montini.teamsports.model.User</class>
+        <class>com.montini.teamsports.model.Authority</class>
+        <class>com.montini.teamsports.model.AppUserDetails</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/teamsports?useSSL=false"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="toplink.jdbc.user" value="yolo"/>
+            <property name="toplink.jdbc.password" value="asdfgh123"/>
+        </properties>
+    </persistence-unit>
+</persistence>
