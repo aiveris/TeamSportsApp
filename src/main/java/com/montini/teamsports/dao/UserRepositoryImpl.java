@@ -23,7 +23,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     @Transactional
-    public Integer add(Object user) {
+    public Integer add(User user) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -45,13 +45,32 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    @Transactional
-    public void delete(Object o) {
+    public void delete(Integer integer) {
+
     }
 
     @Override
     @Transactional
-    public Object update(Object o) {
+    public void delete(User o) {
+
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            transaction = session.beginTransaction();
+            transaction.commit();
+
+        } catch (Exception e) {
+
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    @Transactional
+    public User update(User o) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
