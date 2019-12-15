@@ -74,5 +74,10 @@ public class User implements Serializable {
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
     }
+
+    @Override
+    public String toString() {
+        return this.getId() + " "  + this.getUsername() + " " +  this.getPassword();
+    }
 }
 
