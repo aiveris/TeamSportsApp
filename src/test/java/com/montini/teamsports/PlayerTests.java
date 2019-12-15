@@ -17,7 +17,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,8 +29,6 @@ public class PlayerTests {
 
     public static final Logger log = LoggerFactory.getLogger(Player.class);
 
-    @Autowired
-    EntityManager entityManager;
 
     @Autowired
     UserRepository userRepository;
@@ -58,7 +55,7 @@ public class PlayerTests {
             transaction = session.beginTransaction();
 
                 log.info( "HBN:TEST " + user.toString() );
-                entityManager.persist(user);
+                session.save(user);
 
 
             transaction.commit();
