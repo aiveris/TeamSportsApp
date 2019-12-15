@@ -15,10 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
-@ComponentScan("com.montini.teamsports.dao")
+@WebAppConfiguration("classpath:resources")
+@ComponentScan("com.montini.teamsports")
 public class PlayerTests {
     public static final Logger log = LoggerFactory.getLogger(Player.class);
 
@@ -36,6 +38,7 @@ public class PlayerTests {
             txn = session.beginTransaction();
 
             User user = new User();
+            user.setId(5);
             user.setUsername("Ignas");
             user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
             userRepository.add(user);

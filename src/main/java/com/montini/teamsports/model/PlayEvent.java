@@ -34,9 +34,11 @@ public class PlayEvent implements Serializable {
 
 
     @JsonIgnore
+    @ManyToMany
     private Set<Player> players = new HashSet<Player>(0);
 
     @JsonIgnore
+    @OneToMany
     private Set<Review> reviews = new HashSet<Review>(0);
 
     // Constructors
