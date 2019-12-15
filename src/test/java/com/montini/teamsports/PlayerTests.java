@@ -26,44 +26,33 @@ import java.util.Set;
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration("classpath:resources")
 @ComponentScan("com.montini.teamsports")
+
 public class PlayerTests {
+
     public static final Logger log = LoggerFactory.getLogger(Player.class);
 
     @Autowired
-    UserRepository userRepository = new UserRepositoryImpl();
+    UserRepository userRepository;
+
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Test
     public void test() {
-        Session session = null;
-        Transaction txn = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            txn = session.beginTransaction();
 
-            User user = new User();
-            Set<Authority> authorities = new HashSet<>();
-            Authority authority = new Authority(AuthorityType.valueOf("ROLE_ADMIN"));
-            authorities.add(authority);
-            user.setId(5);
+        try {
+
+            final User user = new User();
             user.setUsername("Ignas");
-            user.setAuthorities(authorities);
             user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
+
+            log.info( "HBN:USER LOG " + user.toString() );
+
             userRepository.add(user);
 
+        } catch (Exception e) {
 
-
-            session.save(user);
-
-            txn.commit();
-        } catch (RuntimeException e) {
-            if (txn != null && txn.isActive()) txn.rollback();
-            throw e;
-        } finally {
-            if (session != null) {
-                session.close();
-            }
+            e.printStackTrace();
         }
     }
 

@@ -30,6 +30,8 @@ public class UserRepositoryImpl implements UserRepository {
 
             // start a transaction
             transaction = session.beginTransaction();
+
+            log.info( "HBN:SAVE " + user.toString() );
             session.save(user);
 
             transaction.commit();
@@ -41,7 +43,7 @@ public class UserRepositoryImpl implements UserRepository {
             e.printStackTrace();
         }
 
-        return ((User)user).getId();
+        return user.getId();
     }
 
     @Override
