@@ -22,14 +22,14 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "/fragments/login";
     }
 
     @RequestMapping(value = "/loginFailed", method = RequestMethod.GET)
     public String loginError(Model model) {
         log.info("Login attempt failed");
         model.addAttribute("error", "true");
-        return "login";
+        return "/fragments/login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

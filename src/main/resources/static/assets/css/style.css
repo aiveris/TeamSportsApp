@@ -1,8 +1,12 @@
 .dataView {
-  padding-top: 30px;
-  padding-bottom: 200px;
+    padding-top: 30px;
+    padding-bottom: 200px;
 }
 
 .darkMode {
-  background-color: #343a40;
+    background-color: #343a40;
+}
+
+.login-card {
+    background-color: rgb(52, 58, 64);
 }
