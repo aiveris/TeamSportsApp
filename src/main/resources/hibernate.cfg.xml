@@ -19,6 +19,7 @@
     <mapping resource="hibernate/location.hbm.xml" />
     <mapping resource="hibernate/playevent.hbm.xml" />
     <mapping resource="hibernate/review.hbm.xml" />
+    <mapping resource="hibernate/user.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>
