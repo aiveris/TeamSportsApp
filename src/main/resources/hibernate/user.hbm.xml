@@ -8,6 +8,9 @@
         <id name="id" column="id">
             <generator class="identity"/>
         </id>
+        <property name="username" column="username" type="string"/>
+        <property name="password" column="password" type="string"/>
+        <property name="dateCreated" column="date_created" type="java.util.Date"/>
 
     </class>
 </hibernate-mapping>

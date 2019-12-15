@@ -1,9 +1,6 @@
 package com.montini.teamsports;
 
 import com.montini.teamsports.dao.UserRepository;
-import com.montini.teamsports.dao.UserRepositoryImpl;
-import com.montini.teamsports.model.Authority;
-import com.montini.teamsports.model.AuthorityType;
 import com.montini.teamsports.model.Player;
 import com.montini.teamsports.model.User;
 import org.hibernate.Session;
@@ -20,8 +17,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.EntityManager;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -31,6 +29,9 @@ import java.util.Set;
 public class PlayerTests {
 
     public static final Logger log = LoggerFactory.getLogger(Player.class);
+
+    @Autowired
+    EntityManager entityManager;
 
     @Autowired
     UserRepository userRepository;
@@ -45,15 +46,20 @@ public class PlayerTests {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
+            SimpleDateFormat dateformat3 = new SimpleDateFormat("dd/MM/yyyy");
+                Date date1 = dateformat3.parse("17/07/1989");
+
             final User user = new User();
             user.setUsername("Ignas");
             user.setPassword(bCryptPasswordEncoder.encode("asdfg"));
+            user.setDateCreated(date1);
 
             // start a transaction
             transaction = session.beginTransaction();
 
                 log.info( "HBN:TEST " + user.toString() );
-                userRepository.add(user);
+                entityManager.persist(user);
+
 
             transaction.commit();
 
