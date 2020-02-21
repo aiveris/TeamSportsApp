@@ -56,7 +56,7 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/teamsports"/>
-        <property name="username" value="yolo"/>
+        <property name="username" value="root"/>
     </bean>
 
     <bean name="playerDao"

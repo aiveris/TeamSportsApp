@@ -7,8 +7,8 @@
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/teamsports?useSSL=false"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="toplink.jdbc.user" value="yolo"/>
-            <property name="toplink.jdbc.password" value="asdfgh123"/>
+            <property name="toplink.jdbc.user" value="root"/>
+            <property name="toplink.jdbc.password" value="Energotronic%1"/>
         </properties>
     </persistence-unit>
 </persistence>
